@@ -1,0 +1,14 @@
+{
+  "input": 43217,
+  "malicious_in": 15149,
+  "benign_in": 28068,
+  "malicious_exec": 10824,
+  "malicious_parser_only": 3542,
+  "malicious_neither": 783,
+  "benign_exec_false_positive": 10,
+  "benign_kept": 28058,
+  "malicious_kept": 10824,
+  "rr_malicious_kept": 0.0,
+  "output_rows": 38882,
+  "w1_parser_only_ratio": 0.23381081259489075
+}

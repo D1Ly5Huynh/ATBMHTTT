@@ -1,0 +1,15 @@
+{
+  "name": "xss-lab-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lab 3 ngu canh XSS + DOMPurify — chi localhost",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dompurify": "3.2.4",
+    "express": "4.21.2",
+    "jsdom": "25.0.1"
+  }
+}

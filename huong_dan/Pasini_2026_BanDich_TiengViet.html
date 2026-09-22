@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasini 2026 — Bản dịch tiếng Việt (toàn bài)</title>
+<style>
+/* RE / Security HTML Report — base stylesheet (self-contained, dark theme) */
+:root {
+  --bg: #0f1419;
+  --surface: #1a2332;
+  --surface2: #243044;
+  --border: #2d3f56;
+  --text: #e6edf3;
+  --muted: #8b9cb3;
+  --accent: #3b82f6;
+  --accent2: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --code-bg: #0d1117;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
+h2 { font-size: 1.35rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent); color: #fff; }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+h4 { font-size: 0.95rem; margin: 1rem 0 0.5rem; color: var(--muted); }
+p { margin-bottom: 0.75rem; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.stat { background: var(--surface2); border-radius: 8px; padding: 1rem; text-align: center; }
+.stat .val { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.stat .lbl { font-size: 0.8rem; color: var(--muted); }
+pre, code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.82rem;
+}
+code { background: var(--code-bg); padding: 0.15rem 0.4rem; border-radius: 3px; }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.cmd { border-left: 4px solid var(--accent); }
+.out { border-left: 4px solid var(--accent2); }
+.warn-box {
+  background: #3d2a1a;
+  border: 1px solid var(--warn);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.ok-box {
+  background: #1a3d2a;
+  border: 1px solid var(--accent2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.danger-box {
+  background: #3d1a1a;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.summary-box { border-left: 4px solid var(--warn); padding-left: 1rem; margin: 1rem 0; }
+.flow {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+.steps { counter-reset: step; }
+.step { counter-increment: step; }
+.step h3::before {
+  content: "Bước " counter(step) " — ";
+  color: var(--warn);
+}
+.step > h2::before {
+  content: "Bước " counter(step) " — ";
+  color: var(--warn);
+}
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+th, td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; word-break: break-all; }
+th { background: var(--surface2); color: var(--accent); }
+tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-high { background: rgba(239,68,68,0.2); color: var(--danger); border: 1px solid var(--danger); }
+.badge-med { background: rgba(245,158,11,0.2); color: var(--warn); border: 1px solid var(--warn); }
+.badge-low { background: rgba(34,197,94,0.2); color: var(--accent2); border: 1px solid var(--accent2); }
+.badge-info { background: rgba(59,130,246,0.2); color: var(--accent); border: 1px solid var(--accent); }
+.badge-ok { background: #14532d; color: #86efac; }
+.badge-warn { background: #713f12; color: #fde68a; }
+.toc { list-style: none; }
+.toc li { margin: 0.4rem 0; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+ul { margin: 0.5rem 0 0.75rem 1.5rem; }
+li { margin: 0.25rem 0; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<h1>Bản dịch tiếng Việt — Pasini et al. (2026)</h1>
+<p class="meta">
+  <strong>Nguyên tác:</strong> Samuele Pasini, Gianluca Maragliano, Jinhan Kim, Paolo Tonella.
+  <em>Cross-site scripting adversarial attacks based on deep reinforcement learning: Evaluation and extension study.</em>
+  Journal of Systems and Software, 2026. DOI: 10.1016/j.jss.2026.112856 · arXiv:2502.19095<br>
+  PDF: <code>papers/core/Pasini_2026_JSS_arXiv.pdf</code><br>
+  Đây là bản dịch học thuật (không thay thế nguyên tác). Công thức, số liệu, tên riêng giữ nguyên.
+</p>
+
+<div class="ok-box">
+  Replication Chen (2022) + XSS Oracle. ER Chen ~99% phần lớn do payload bị phá ở bước preprocess (Ruin Rate ~93–98%). Khi nhét Oracle vào train, ER vẫn &gt;96% mà payload còn độc.
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0;border:none;">Mục lục theo bài gốc</h2>
+  <ul class="toc">
+    <li><a href="#abs">Tóm tắt</a></li>
+    <li><a href="#s1">1. Mở đầu</a></li>
+    <li><a href="#s2">2. Cơ sở và công trình liên quan</a></li>
+    <li><a href="#s3">3. Công trình tham chiếu (Chen 2022)</a></li>
+    <li><a href="#s4">4. Phương pháp (Oracle, RR, OOV)</a></li>
+    <li><a href="#s5">5. Nghiên cứu thực nghiệm</a></li>
+    <li><a href="#s6">6. Kết quả RQ1–RQ4</a></li>
+    <li><a href="#s7">7. Mối đe dọa tính hợp lệ</a></li>
+    <li><a href="#s8">8. Kết luận</a></li>
+  </ul>
+</div>
+
+<h2 id="abs">Tóm tắt</h2>
+<div class="card">
+  <p>XSS là mối đe dọa nghiêm trọng với ứng dụng web. Học sâu (DL) phát hiện XSS rất tốt nhưng dễ bị tấn công đối kháng vì ánh xạ vào–ra không liên tục. Các tấn công này đột biến từng thành phần vector XSS; agent chọn đột biến lặp lại để lẩn detector.</p>
+  <p>Chúng tôi replication một tấn công XSS đối kháng SOTA, chỉ ra các mối đe dọa tính hợp lệ (threats to validity) của bài gốc, rồi mở rộng sang chiến lược đánh giá hiệu quả hơn. Chúng tôi đưa thêm <strong>XSS Oracle</strong> để giảm các mối đe dọa đó. Kết quả: escape rate trên 96% khi các mối đe dọa của kỹ thuật gốc đã được xử lý.</p>
+  <p><strong>Từ khóa:</strong> XSS · Học tăng cường sâu · Tấn công đối kháng</p>
+</div>
+
+<h2 id="s1">1. Mở đầu</h2>
+<div class="card">
+  <p>Ứng dụng web phát triển nhanh cũng mở ra thách thức an ninh. Trong các tấn công web, XSS nổi bật: kẻ tấn công chèn script độc, trình duyệt nạn nhân thực thi mà không biết — đánh cắp dữ liệu, lan worm. Cần phương pháp phát hiện vững và kiểm tra đầu vào chặt.</p>
+  <p>Phát hiện lỗ hổng XSS dùng phân tích tĩnh (đọc mã nguồn; khó scale, nhiều false positive) hoặc động (mô phỏng người dùng; false negative cao vì không phủ hết kịch bản). Do đó có hướng phát hiện XSS lúc chạy. Ban đầu: học máy + đặc trưng thủ công (Likarish, Nunan, Wang, Rathore, Mereani). Sau đó DNN: DeepXSS, MLPXSS, Tekerek, v.v.</p>
+  <p>DNN dễ bị adversarial: thay đổi nhỏ trên đầu vào đánh lừa mô hình. Chen et al. (Computers &amp; Security 2022) đề xuất RL sinh mẫu XSS đối kháng, Word2Vec, detector accuracy &gt;99%, Escape Rate (ER) &gt;90% trên mọi detector DNN. ER = tỉ lệ mẫu đối kháng mà detector không gắn nhãn độc.</p>
+  <p><strong>Ba mối đe dọa chúng tôi thấy ở Chen:</strong></p>
+  <ol>
+    <li>Chuỗi action có thể phá đặc trưng XSS; Chen không kiểm tra mutation còn giữ ngữ nghĩa tấn công.</li>
+    <li>Pipeline preprocess detector không tính adversarial: mutation tạo token ngoài từ vựng (OOV) bị thay bằng <code>None</code> — đầu vào detector không còn là XSS.</li>
+    <li>Thiếu code, dataset, model — khó replication.</li>
+  </ol>
+  <p>Chúng tôi replication Chen trên dataset công khai, đưa Oracle XSS để kiểm tra các mối đe dọa. Mở rộng: nhúng Oracle vào quá trình train. Agent đạt hiệu năng kém Chen &lt;2% nhưng loại gần hết mối đe dọa (&gt;90% mitigation), đánh giá minh bạch hơn.</p>
+  <p><strong>Đóng góp:</strong> (1) replication + dữ liệu/kết quả public; (2) chỉ ra threats và cách giảm; (3) Oracle trong train.</p>
+</div>
+
+<h2 id="s2">2. Cơ sở và công trình liên quan</h2>
+<div class="card">
+  <h3>2.1 XSS</h3>
+  <p>XSS = chèn mã độc vào trang; trình duyệt nạn nhân thực thi. OWASP xếp XSS trong các rủi ro phổ biến.</p>
+  <h3>2.1.1 Phòng thủ XSS</h3>
+  <p>Phát hiện lỗ hổng trước phát hành (tĩnh/động) và phát hiện payload lúc chạy (ML rồi DL).</p>
+  <h3>2.1.2 Tấn công đối kháng lên detector XSS</h3>
+  <p>Fang (DeepXSS/DDQN): ER &lt;10% vì chiến lược bypass đơn giản. Zhang (MCTS): ít chiến lược, tốn thời gian. Wang (soft Q-learning, tách HTML/JS): ER 85%. Chen (DRL + bộ luật mutation): ER gần hoàn hảo — phân tích ở mục 3.</p>
+  <h3>2.2 Học tăng cường (RL)</h3>
+  <p>Agent tương tác môi trường, chọn action theo policy π(a|s), nhận reward, tối đa hóa tổng reward có chiết khấu γ. PPO: on-policy, clip cập nhật policy, dùng được action rời rạc. DDPG/SAC: off-policy, thường action liên tục. Chen dùng SAC; bài này dùng PPO vì action XSS rời rạc.</p>
+</div>
+
+<h2 id="s3">3. Công trình tham chiếu (Chen 2022)</h2>
+<div class="card">
+  <h3>3.1 Phương pháp</h3>
+  <p>Hai pha: <strong>phát hiện</strong> và <strong>thoát</strong>.</p>
+  <p>Pha phát hiện: preprocess (de-obfuscate, lowercase, URL → http://, bỏ nhiễu &lt;br&gt;), tokenize theo Table 1, giữ 10% token phổ biến, còn lại <code>None</code>, Word2Vec 32 chiều, cắt/pad độ dài 200, đưa vào MLP/LSTM/CNN.</p>
+  <p><strong>Table 1 — Luật tokenize (tóm tắt):</strong> hàm JS; nội dung trong ngoặc kép/đơn; URL; thẻ mở/đóng; thuộc tính; nội dung trong ngoặc đơn.</p>
+  <p>Pha thoát: agent RL chọn action đột biến. State = lịch sử action. Reward +10 nếu lọt detector, −1 nếu bị phát hiện. Lặp đến khi lọt hoặc hết bước.</p>
+  <p>Table 2 (27 action) đã dịch đủ trong file <code>Pasini_2026_GiaiThich_ChiTiet.html</code>. Gồm: entity/tab/newline trên javascript, mixed-case thẻ/thuộc tính, Base64 data:, thay alert bằng concat/toString/regex, comment trong thẻ, %00, vbscript, v.v.</p>
+  <h3>3.2 Thí nghiệm Chen</h3>
+  <p>~90.000 mẫu train detector (XSSed + Alexa) — <strong>không public</strong>. Agent train trên dataset kiểu Wang 2022. Detector: MLP, LSTM, CNN + SafeDog, XSSChop (thương mại).</p>
+  <p>DR = số độc còn bị phát hiện / tổng adversarial. ER = số độc không bị phát hiện / tổng adversarial.</p>
+  <h3>3.3 Kết quả Chen</h3>
+  <p>Table 3: Precision/Recall/Acc/F1 detector đều ~98–100%.</p>
+  <p>Table 4 ER: MLP 99.73% · LSTM 92.04% · CNN 99.24% · XSSChop 98.46% · SafeDog 99.95%. Đây là lý do replication: vì sao “thành công” quá đà?</p>
+  <h3>3.4 Threats to validity</h3>
+  <ul>
+    <li><strong>TH1:</strong> không kiểm tra mutation còn là XSS.</li>
+    <li><strong>TH2:</strong> token mới rơi ngoài 10% từ điển → None → phá ngữ nghĩa, ER phình.</li>
+    <li><strong>TH3:</strong> không có code/data/model. Tác giả Chen được liên hệ, không trả lời.</li>
+  </ul>
+</div>
+
+<h2 id="s4">4. Phương pháp</h2>
+<div class="card">
+  <p>Ý chính: <strong>XSS Oracle</strong> — đánh giá payload còn độc không, và dùng khi train để đánh giá đúng Chen.</p>
+  <h3>4.1 XSS Oracle</h3>
+  <p>Payload lành: không đổi cấu trúc DOM khi “chạy”. Payload độc: làm đổi DOM.</p>
+  <pre class="flow">p → server nhúng vào template HTML đã biết
+  → so DOM trang có p với DOM trang không p
+  khác biệt → Malicious (1)
+  không đổi → Benign (0)</pre>
+  <p>Hình 2: so hai DOM. Công cụ: FastAPI, Jinja2, BeautifulSoup, zss (tree edit distance).</p>
+  <h3>4.2 Metric</h3>
+  <p>Tập M gồm payload gắn nhãn độc (gốc hoặc do agent sinh). O(p)=1 nếu Oracle = Malicious.</p>
+  <pre class="out">RR(M) = 1 − (Σ O(m)) / |M|</pre>
+  <p>Nếu M là dataset gốc mà RR ≠ 0 → nhãn sai. Nếu M là adversarial từ tập RR=0 mà RR(M)≠0 → quá trình đối kháng đã phá tính chất tấn công.</p>
+  <p>OOV-Rate trên mảng token V (None = OOV):</p>
+  <pre class="out">OR(V) = (số token None) / |V|</pre>
+</div>
+
+<h2 id="s5">5. Nghiên cứu thực nghiệm</h2>
+<div class="card">
+  <h3>5.1 Replication</h3>
+  <p>Dataset Chen không public → dùng Mereani Payloads.csv (&gt;15k độc/lành). Nếu vocabulary từ một dataset, test dataset kia: RR &gt;60% <em>trước cả khi train agent</em> (lệch cấu trúc URL vs tham số).</p>
+  <p>Cách làm: một dataset, chia đôi — một nửa train detector, một nửa train agent (chỉ Malicious). Oracle lọc trước; undersample Benign. RR gốc = 0%.</p>
+  <p><strong>Table 5 — Split</strong></p>
+  <table>
+    <tr><th>Nhãn</th><th>Det train</th><th>Det val</th><th>Det test</th><th>Agent train</th><th>Agent val</th><th>Agent test</th></tr>
+    <tr><td>Lành</td><td>2.884</td><td>721</td><td>902</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>Độc</td><td>2.883</td><td>721</td><td>901</td><td>2.883</td><td>712</td><td>901</td></tr>
+  </table>
+  <p>Output detector: sigmoid (nhị phân), không softmax. Chỉ MLP/LSTM/CNN (SafeDog/XSSChop không public). 150 epoch, early stop patience 10, embedding 8, lr 10⁻³, SGD.</p>
+  <p>Agent: PPO thay SAC (SB3 SAC chỉ continuous). Table 6: Precision 99.67%, Recall 100%, Acc/F1 99.83% cả ba mô hình.</p>
+  <h3>5.2 Câu hỏi nghiên cứu</h3>
+  <ul>
+    <li><strong>RQ1:</strong> Có tái lập được kết quả Chen không? (TH3)</li>
+    <li><strong>RQ2:</strong> Thiếu kiểm tra action có phải threat nghiêm trọng? (TH1)</li>
+    <li><strong>RQ3:</strong> Thiếu kiểm tra payload sau preprocess có phải threat? (TH2)</li>
+    <li><strong>RQ4:</strong> Phương pháp gốc ra sao khi đã giảm threats?</li>
+  </ul>
+  <h3>5.3 Cài đặt</h3>
+  <p>Python 3.11, PyTorch 2.2.1, SB3 2.3.0, FastAPI 0.104, Jinja2 3.1.2, BeautifulSoup, zss 1.2.0.</p>
+  <h3>5.4 Nhúng Oracle</h3>
+  <p>Tập E = payload độc lọt detector (đóng góp ER). Đưa E vào Oracle → RR(E) = RQ2. Preprocess E thành V, Oracle trên V → RR(V) = RQ3. Bổ sung OR(V).</p>
+  <p><strong>RQ4:</strong> tăng vocabulary không chắc hết TH2 (agent vẫn sinh token mới). Reward = <strong>−2</strong> nếu payload sau preprocess Oracle không còn nhận là XSS; ngược lại giữ reward Chen.</p>
+</div>
+
+<h2 id="s6">6. Kết quả</h2>
+<div class="card">
+  <h3>6.1 RQ1 (TH3)</h3>
+  <p>10 lần train mỗi detector. Table 7 ER: LSTM 98.62% · MLP 99.73% · CNN 98.25%. LSTM hơn Chen 6.58 điểm phần trăm; MLP trùng; CNN kém ~1 điểm. Dataset/thuật toán khác không làm đổi bức tranh.</p>
+  <p><strong>Trả lời RQ1:</strong> Tái lập thành công; agent đối kháng vẫn “hiệu quả” theo ER.</p>
+  <p>Giả thuyết: ER cao vì action/preprocess phá payload hoặc OOV — thuật toán nào cũng “thắng” nếu chỉ tạo payload vô hiệu/OOV.</p>
+  <h3>6.2 RQ2 (TH1)</h3>
+  <p>Table 8 RR(E): 6.34% / 7.07% / 6.36%. Mutation đôi khi phá XSS, nhưng không đủ giải thích ER 99%.</p>
+  <p><strong>Trả lời RQ2:</strong> TH1 không nghiêm trọng; vẫn nên kiểm tra action.</p>
+  <h3>6.3 RQ3 (TH2) — kết quả then chốt</h3>
+  <table>
+    <tr><th>Detector</th><th>RR(V) sau preprocess</th><th>OR(V) OOV</th></tr>
+    <tr><td>LSTM</td><td>97.31%</td><td>47.49%</td></tr>
+    <tr><td>MLP</td><td>97.84%</td><td>44.76%</td></tr>
+    <tr><td>CNN</td><td>92.57%</td><td>43.85%</td></tr>
+  </table>
+  <p>OOV payload không đột biến chỉ ~6%; sau mutation &gt;40%. Agent học lối tắt OOV thay vì XSS còn nghĩa.</p>
+  <p>Tấn công Chen vẫn “có hiệu lực” trong setup gốc — nhưng thành công với mọi detector vì preprocess. Defender biết OOV có thể lọc payload OOV bất thường là xong. Do đó ER trên XSSChop/SafeDog cũng khó diễn giải: các hệ đó có thể không dính OOV theo cùng cách.</p>
+  <p><strong>Trả lời RQ3:</strong> TH2 là threat cụ thể. Cần validate payload sau preprocess.</p>
+  <h3>6.4 RQ4 (mở rộng)</h3>
+  <p>Table 10 ER có Oracle: LSTM 98.13% · MLP 97.37% · CNN 96.89% (hơi thấp hơn RQ1).</p>
+  <p>Table 11 RR(V) / OR(V): 0.01%/1.73% · 0.11%/2.30% · 0.08%/1.90%.</p>
+  <p><strong>Trả lời RQ4:</strong> Train có Oracle vẫn bypass detector, không dựa lối tắt preprocess. Tấn công đối kháng lên detector XSS là mối đe dọa thật.</p>
+</div>
+
+<h2 id="s7">7. Mối đe dọa tính hợp lệ (của chính bài Pasini)</h2>
+<div class="card">
+  <p><strong>Internal:</strong> train RL không xác định — lặp 10 lần; code public, framework mã nguồn mở.</p>
+  <p><strong>External:</strong> Mereani không phủ mọi XSS nhưng public và dùng nhiều như benchmark.</p>
+  <p><strong>Construct:</strong> detector: Precision/Recall/Acc/F1; agent: ER như bài gốc.</p>
+</div>
+
+<h2 id="s8">8. Kết luận</h2>
+<div class="card">
+  <p>Chúng tôi replication Chen, phân tích threats, rồi mở rộng để giảm chúng. Số ER gần Chen, khác biệt then chốt: đã loại threats — tấn công detector thật, không dựa OOV preprocess. Code, data, kết quả công khai.</p>
+  <p><strong>Dữ liệu:</strong> https://github.com/GianlucaMaragliano/Adversarial_RL_XSS</p>
+  <p><strong>Tài trợ:</strong> Horizon Europe Sec4AI4Sec, 101120393.</p>
+  <p><strong>Vai trò:</strong> Pasini — phân tích, thí nghiệm, viết; Maragliano — data, thí nghiệm; Kim &amp; Tonella — hướng dẫn, sửa bài.</p>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0;border:none;">Tài liệu tham khảo (giữ nguyên văn, chọn lọc)</h2>
+  <p>[20] Chen et al., Computers &amp; Security 120:102831, 2022. [15] Mereani &amp; Howe, AMLTA 2018. [16] Fang et al., DeepXSS, 2018. [23] Wang et al., Computers &amp; Security 113:102554, 2022. [24] Schulman et al., PPO. [26] Haarnoja et al., SAC. Danh sách đầy đủ: PDF gốc.</p>
+</div>
+
+<hr>
+<div class="warn-box">
+  Bản dịch phục vụ luận văn, không thay PDF.
+  Bảng 27 action dịch đủ: <code>huong_dan/Pasini_2026_GiaiThich_ChiTiet.html</code>.
+</div>
+<footer>ATBMHTTT · huong_dan/Pasini_2026_BanDich_TiengViet.html</footer>
+
+</body>
+</html>

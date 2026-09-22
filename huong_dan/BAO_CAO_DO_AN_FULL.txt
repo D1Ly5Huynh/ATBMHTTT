@@ -1,0 +1,1205 @@
+================================================================================
+BÁO CÁO ĐỒ ÁN / LUẬN VĂN
+Học phần: An toàn bảo mật hệ thống thông tin (ATBMHTTT)
+Bản dán Word — nội dung đầy đủ, số đã chốt từ lab
+Cập nhật: 2026-09-20
+================================================================================
+
+CÁCH DÙNG
+----------
+1. Copy từng mục vào Word nhà trường (Times New Roman 13pt, giãn dòng 1.5, A4,
+   lề trái 3 cm, phải 2 cm nếu trường không quy định khác).
+2. Điền [HỌ TÊN], [MSSV], [LỚP], [GVHD] trên bìa và lời cam đoan.
+3. Không trộn số hai nhánh:
+      Nhánh A (artifact data/10, LabelEncoder từng mẫu, Oracle DOM)  → ER ~99%
+      Nhánh B (lab JSDOM, token-id cố định, Oracle execute)         → ER ~1%
+4. Số nhánh A trong báo cáo này là seed 42, 250.000 bước PPO, test 901 mẫu.
+   Paper công bố trung bình 10 seed. Lưới 10 seed (42–51) đang chạy thêm;
+   khi xong, thay/bổ sung bảng mean±std từ lab/runs/pasini_faithful/seed10_summary.json.
+   Seed 42 đã khớp Table 4 và RQ3 cả ba mạng — đủ bảo vệ.
+5. Câu cấm (học thuộc, xem Phụ lục A): không viết “reproduce Chen 99%”,
+   không SAC, không bypass CRS, không HTTP 200 = TASR, không LLM generator.
+
+
+================================================================================
+BÌA
+================================================================================
+
+                    HỌC PHẦN AN TOÀN BẢO MẬT HỆ THỐNG THÔNG TIN
+                                        (ATBMHTTT)
+
+                                      LUẬN VĂN / BÁO CÁO ĐỒ ÁN
+
+        Đánh giá và mở rộng tấn công đối kháng XSS
+        dựa trên học tăng cường sâu
+        theo khung Pasini et al. (JSS 2026)
+
+Sinh viên thực hiện : [HỌ TÊN]
+MSSV                : [MSSV]
+Lớp                 : [LỚP]
+Giảng viên hướng dẫn: [HỌ TÊN GVHD]
+Cơ sở               : [TÊN TRƯỜNG / KHOA]
+Tháng 9 năm 2026
+
+
+Bài gốc:
+Pasini, S., Maragliano, G., Kim, J., Tonella, P. (2026). Cross-site scripting
+adversarial attacks based on deep reinforcement learning: Evaluation and
+extension study. Journal of Systems and Software. DOI: 10.1016/j.jss.2026.112856.
+arXiv:2502.19095v2.
+
+Artifact: GitHub GianlucaMaragliano/Adversarial_RL_XSS, commit a299bb6
+(2025-01-08). FigShare dataset kèm paper.
+
+Phạm vi: localhost; dataset Mereani / artifact data/10; OWASP CRS 4 lab
+paranoia 1–2 và DOMPurify. Không đánh WAF cloud. Không dùng LLM sinh payload.
+Bám PDF v2 (RQ1–RQ3). Không dùng đánh số RQ1–RQ4 của bản HTML dịch cũ.
+
+
+================================================================================
+LỜI CAM ĐOAN
+================================================================================
+
+Tôi xin cam đoan đây là công trình nghiên cứu của tôi, được thực hiện dưới sự
+hướng dẫn của [GVHD]. Các số liệu thí nghiệm trong báo cáo được đo trên máy
+lab localhost từ artifact pin a299bb6 và mã nguồn trong thư mục lab/. Những
+kết quả không phải của tôi đều được trích dẫn rõ nguồn.
+
+Tôi không tuyên bố tái lập Escape Rate ~99% của Chen et al. (2022) như thành
+công của đồ án. Tôi không tuyên bố bypass CRS hay WAF thương mại.
+
+[Địa danh], ngày .... tháng 9 năm 2026
+
+Sinh viên
+[HỌ TÊN]
+
+
+================================================================================
+LỜI CẢM ƠN
+================================================================================
+
+Em xin cảm ơn giảng viên hướng dẫn [GVHD] đã định hướng đề tài và góp ý trong
+quá trình làm thí nghiệm. Em cảm ơn nhóm tác giả Pasini, Maragliano, Kim,
+Tonella đã công bố artifact, nhờ đó đồ án tái lập được protocol trên đúng
+split data/10.
+
+Mọi sai sót còn lại thuộc về người viết.
+
+
+================================================================================
+TÓM TẮT
+================================================================================
+
+Chen et al. (2022) huấn luyện agent học tăng cường để payload XSS “lọt”
+detector học sâu, báo Escape Rate (ER) khoảng 99%, nhưng không kiểm tra
+payload còn thực thi được trong trình duyệt. Pasini et al. (JSS 2026) tái lập
+protocol trên tập Mereani, thay SAC bằng PPO, thêm Oracle DOM (BeautifulSoup
++ zss so với trang chứa chuỗi "abc"), và kết luận phần lớn “lọt” đến từ
+tiền xử lý / token ngoài từ vựng (OOV, ký hiệu None) — mối đe dọa TH2 — chứ
+không phải mutation phá XSS (TH1). Khi nhét Oracle vào hàm thưởng, ER trên
+MLP/LSTM/CNN vẫn lớn hơn 96% và Ruin Rate gần 0.
+
+Đồ án bám khung đánh giá của Pasini (Oracle → Ruin Rate → Oracle-in-the-loop),
+không bám con số ER 99% như mục tiêu thành công. Công việc chia hai nhánh,
+không trộn số:
+
+Nhánh A (sát paper). Chạy đúng artifact a299bb6 và split data/10. Detector
+MLP, LSTM, CNN trùng Table 4 paper: Precision 99,67%, Recall 100%, Accuracy
+và F1 99,83% (test n = 1.802, TP = 901, FP = 3, TN = 898, FN = 0). PPO không
+Oracle, 250.000 bước, seed 42, test 901 mẫu: LSTM ER 98,78% (890/901), MLP
+98,67%, CNN 98,89%. LSTM: RR(E) = 8,99%, RR(V) = 98,54%, OR(V) = 48,54% —
+khớp cơ chế TH2. RQ3 (Oracle DOM trong reward, code −5): LSTM 98,34%, MLP
+97,89%, CNN 96,00%, RR ≈ 0. Kết luận: protocol paper lặp lại được; ER ~99%
+là artifact encode/OOV, không phải XSS còn chạy JavaScript.
+
+Nhánh B (đóng góp đồ án). Lọc Mereani bằng oracle thực thi JSDOM: giữ 10.824
+mẫu độc còn execute, loại 3.542 mẫu chỉ đổi DOM (W1 = 23,4%), Ruin Rate gốc
+= 0. Token-id cố định theo từ vựng. Cùng 27 action Table 2 nhưng viết lại
+A18/A20/A21 (artifact no-op / stub / (1)(1)). LSTM acc 0,991. PPO 3 seed ×
+20.000 bước: ER trung bình 0,75%. Oracle-in-loop (R_exec: +10 chỉ khi lọt
+và còn execute): PPO ER = TASR = 0,25% (sàn false-negative), Dueling DQN
+1,08%, RR = 0. Trên lab CRS 4 paranoia 1, catalog Table 2 và agent LSTM có
+TASR = 0. DOMPurify: HTTP 200 nhưng hết độc, Δ = 1,00. Không huấn luyện RL
+trên CRS vì chưa có primitive BYPASS_EXEC.
+
+Từ khóa: XSS, tấn công đối kháng, PPO, Oracle thực thi, Ruin Rate, TASR,
+OWASP CRS, DOMPurify.
+
+
+ABSTRACT (English, optional — dán nếu trường yêu cầu tóm tắt tiếng Anh)
+-----------------------------------------------------------------------
+Chen et al. (2022) reported ~99% XSS-detector Escape Rate without checking
+whether mutated payloads still execute. Pasini et al. (JSS 2026) added a DOM
+oracle and attributed most “evasions” to preprocessing / OOV (threat TH2).
+With the oracle in the reward, ER remained >96%. This project follows that
+evaluation frame (oracle → ruin rate → oracle-in-the-loop) on two unmixed
+branches sharing the same 27 Table-2 actions.
+
+Branch A (faithful artifact a299bb6, split data/10, seed 42) reproduces
+Table 4 (P/R/Acc/F1 = 99.67/100/99.83) and PPO ER ~99% (LSTM 98.78%); RQ3
+LSTM/MLP/CNN = 98.34/97.89/96.00% with RR ≈ 0 under the DOM oracle.
+
+Branch B closes the per-sample LabelEncoder bug, uses a JSDOM execute
+oracle, and measures OWASP CRS 4 + DOMPurify with TASR = #BYPASS_EXEC / N.
+PPO mean ER drops to 0.75%; with execute reward, PPO TASR = 0.25% (FN floor)
+and Dueling DQN 1.08%, RR = 0. CRS PL1 TASR = 0 on the Table-2 catalog.
+The 99% ER is an encoding artifact, not working XSS.
+
+Keywords: XSS, adversarial RL, PPO, execute oracle, ruin rate, TASR, CRS.
+
+
+================================================================================
+DANH MỤC TỪ VIẾT TẮT
+================================================================================
+
+CRS        OWASP ModSecurity Core Rule Set
+CNN        Convolutional Neural Network
+DDQN       Dueling Deep Q-Network
+DOM        Document Object Model
+ER         Escape Rate (tỉ lệ độc mà detector gọi lành)
+FN         False Negative
+JSDOM      JavaScript DOM (oracle Node.js)
+LSTM       Long Short-Term Memory
+MLP        Multi-Layer Perceptron
+OOV        Out-of-Vocabulary (token None)
+OR(V)      tỉ lệ token None trên tập V (E sau preprocess)
+PPO        Proximal Policy Optimization
+RQ         Research Question (PDF v2: RQ1–RQ3)
+RR(M)      Ruin Rate trên tập M (1 − trung bình O(p))
+SAC        Soft Actor-Critic (Chen 2022; đồ án không tái lập SAC)
+SB3        Stable-Baselines3
+TASR       True Attack Success Rate = #BYPASS_EXEC / N
+TH1, TH2   Threat 1 (mutation phá XSS), Threat 2 (preprocess/OOV)
+WAF        Web Application Firewall
+XSS        Cross-Site Scripting
+Δ          Escape − TASR (lọt HTTP nhưng hết độc)
+
+
+================================================================================
+DANH MỤC BẢNG
+================================================================================
+
+Bảng 2.1   Evidence → Finding → Path
+Bảng 3.1   Hai nhánh thí nghiệm
+Bảng 3.2   Chen (2022) vs Pasini (2026) vs đồ án
+Bảng 3.3   Split dataset nhánh A (data/10) so Table 3 paper
+Bảng 3.4   Split dataset nhánh B (JSDOM)
+Bảng 4.1   Lọc Mereani bằng oracle thực thi
+Bảng 4.2   Table 4 detector (trùng paper)
+Bảng 4.3   PPO không Oracle — ER, RR(E), RR(V), OR(V)
+Bảng 4.4   RQ3 Oracle-in-loop nhánh A
+Bảng 4.5   PPO nhánh B không Oracle
+Bảng 4.6   PPO vs Dueling DQN (nhánh B, R_exec)
+Bảng 4.7   Đối chiếu hai nhánh
+Bảng 4.8   TASR trên CRS paranoia 1
+Bảng 4.9   Catalog 84 payload: CRS / App / DOMPurify
+Bảng B.1   27 action Table 2
+Bảng D.1   Đường dẫn số liệu
+
+
+================================================================================
+MỤC LỤC
+================================================================================
+
+Lời cam đoan
+Lời cảm ơn
+Tóm tắt
+Chương 1. Mở đầu
+    1.1. Bối cảnh
+    1.2. Vấn đề nghiên cứu
+    1.3. Mục tiêu và đóng góp
+    1.4. Phạm vi, giả thiết, câu cấm
+    1.5. Cấu trúc báo cáo
+Chương 2. Cơ sở lý thuyết và công trình liên quan
+    2.1. XSS và phát hiện bằng học sâu
+    2.2. Tấn công đối kháng XSS bằng học tăng cường
+    2.3. Pasini et al. (2026) — khung đánh giá
+    2.4. Công thức
+    2.5. Evidence → Finding → Path
+Chương 3. Phương pháp
+    3.1. Hai nhánh thí nghiệm
+    3.2. So sánh Chen / Pasini / đồ án
+    3.3. Oracle
+    3.4. Dataset và split
+    3.5. Detector và agent
+    3.6. CRS và DOMPurify (P5)
+    3.7. Lệch protocol đã ghi nhận
+Chương 4. Kết quả
+    4.1. P1 — Oracle thực thi và Mereani
+    4.2. P2 — 27 action
+    4.3. Nhánh A — tái lập sát artifact
+    4.4. Nhánh B P3 — LSTM + PPO, encode ổn định
+    4.5. Nhánh B P4 — Oracle-in-loop, PPO vs Dueling DQN
+    4.6. Đối chiếu hai nhánh
+    4.7. P5 — CRS, DOMPurify, transfer, Playwright
+Chương 5. Thảo luận
+Chương 6. Hạn chế (threats to validity)
+Chương 7. Kết luận và hướng phát triển
+Tài liệu tham khảo
+Phụ lục A. Câu được viết / câu cấm khi bảo vệ
+Phụ lục B. Catalog 27 action Table 2
+Phụ lục C. Điểm yếu artifact W1–W10
+Phụ lục D. File số liệu và lệnh kiểm tra
+
+
+================================================================================
+CHƯƠNG 1. MỞ ĐẦU
+================================================================================
+
+1.1. Bối cảnh
+-------------
+Cross-site scripting (XSS) là lớp lỗ hổng web trong đó kẻ tấn công chèn mã
+vào trang, để trình duyệt nạn nhân thực thi. Phát hiện XSS từng dựa trên
+đặc trưng thủ công rồi học máy (Mereani và Howe, 2018), sau đó chuyển sang
+mạng sâu: Fang et al. (DeepXSS, 2018) dùng Word2Vec kết hợp LSTM; Mokbal
+et al. (2019) và Tekerek (2021) báo cáo độ chính xác trên 97% trên các tập
+công khai. Detector học sâu vẫn dính tấn công đối kháng vì ánh xạ payload
+sang vector rời rạc: một thay đổi nhỏ trên chuỗi (hoa/thường, entity, nhiễu)
+có thể đổi id token trong khi trình duyệt vẫn chạy mã.
+
+Chen et al. (2022) huấn luyện Soft Actor-Critic (SAC) với 27 phép đột biến
+(Table 2), tiền xử lý giữ khoảng 10% token phổ biến, và báo Escape Rate
+trên 90% — thường được trích ~99% — trên MLP, LSTM, CNN và một số công cụ
+thương mại. Dataset khoảng 90.000 mẫu của Chen không được công bố (Pasini
+gọi đây là mối đe dọa TH3).
+
+Pasini, Maragliano, Kim và Tonella (Journal of Systems and Software, 2026)
+tái lập Chen trên tập Mereani, thay SAC bằng PPO vì SAC trong Stable-Baselines3
+chỉ hỗ trợ action liên tục, dùng sigmoid thay softmax, và thêm Oracle:
+FastAPI nhúng payload vào Jinja |safe, so cây DOM (BeautifulSoup + zss) với
+trang có payload "abc". Ba câu hỏi nghiên cứu trên PDF v2:
+
+  RQ1 / TH1: đột biến có phá XSS không? Đo Ruin Rate trên tập lọt detector,
+             ký hiệu RR(E).
+  RQ2 / TH2: tiền xử lý / OOV có phá XSS không? Đo RR(V) và OR(V).
+  RQ3:       nhét Oracle vào hàm thưởng thì ER còn cao không?
+
+Họ kết luận TH1 nhẹ (RR(E) khoảng 6–7%), TH2 là thủ phạm (RR(V) khoảng
+93–98%, OR(V) khoảng 44–47%). Khi Oracle vào huấn luyện, ER vẫn lớn hơn
+96% và RR(V) gần 0.
+
+
+1.2. Vấn đề nghiên cứu
+----------------------
+Hai lỗ hổng khiến con số ER 99% dễ bị đọc sai.
+
+Thứ nhất, Oracle DOM-diff không chạy JavaScript. Payload được gọi là độc
+khi cây DOM khác trang "abc". Hệ quả: <div>hello</div> cũng “độc” vì thêm
+nút. Trên đúng nguồn Mereani, đồ án đo được 3.542 / 15.149 nhãn Malicious
+(23,4%) chỉ đổi DOM, không execute khi chạy JSDOM — ký hiệu W1.
+
+Thứ hai, artifact XSSDataset gọi LabelEncoder.fit_transform trên từng
+payload. Cùng một token (ví dụ chữ "script") có thể nhận id khác nhau giữa
+các mẫu. Agent học lối tạo token ngoài từ vựng (None) hơn là sinh XSS còn
+chạy. Detector MLP = LSTM = CNN ra đúng một bộ số Table 4 (W4): Precision
+99,67%, Recall 100%, Accuracy/F1 99,83% — tín hiệu detector quá dễ hoặc
+encode lỗi, không phải ba kiến trúc độc lập cùng mạnh.
+
+Câu hỏi đồ án: (i) protocol Pasini có lặp lại được trên đúng artifact và
+split không; (ii) khi khép lối token-id và siết Oracle thành thực thi JS,
+ER 99% còn không; (iii) catalog Table 2 có tạo được payload vừa lọt CRS lab
+vừa còn execute không.
+
+
+1.3. Mục tiêu và đóng góp
+-------------------------
+Đồ án không invent generator XSS mới, không đánh WAF nhà cung cấp, không
+dùng LLM sinh payload. Ba đóng góp:
+
+(1) Tái lập đúng artifact pin a299bb6 và split data/10 (nhánh A). Table 4
+    trùng tới hai chữ số. PPO không Oracle ER ~99%. RQ3 LSTM/MLP/CNN ER
+    lớn hơn 96% với RR ≈ 0 theo Oracle DOM. Viết “protocol lặp lại được”,
+    không viết “reproduced Chen 99%”.
+
+(2) Siết Oracle thành thực thi JavaScript (JSDOM hook, Playwright Chromium
+    hold-out 4 seed) và khép token-id theo từ vựng cố định (nhánh B). Cùng
+    27 mô tả Table 2, ER PPO rơi còn 0,75%; Oracle-in-loop kéo về sàn
+    false-negative 0,25% (Dueling DQN 1,08%), RR = 0.
+
+(3) Đo OWASP CRS 4 (paranoia 1 và 2) và DOMPurify bằng TASR = số
+    BYPASS_EXEC / N. HTTP 200 chỉ là Escape, không phải thành công. Trên
+    lab, catalog Chen/Pasini và agent LSTM có TASR = 0. DOMPurify: Δ = 1
+    (lọt HTTP, hết độc). Không huấn luyện RL trên CRS vì gate BYPASS_EXEC
+    không đạt.
+
+
+1.4. Phạm vi, giả thiết, câu cấm
+--------------------------------
+Phạm vi: máy localhost; dataset Mereani (Payloads.csv, latin-1) và artifact
+data/10; FastAPI Oracle :5555 (nhánh A); JSDOM + Playwright (nhánh B);
+Docker CRS PL1 :18080, PL2 :18081, app :13000.
+
+Giả thiết: XSS “còn độc” nghĩa là hook JavaScript chạy (alert / eval /
+javascript: / onerror / title / cookie). Không phủ mXSS, DOM clobbering,
+sink framework.
+
+Cấm trong toàn bộ báo cáo và khi bảo vệ:
+  — coi ER Chen ~99% là thành công của đồ án;
+  — tuyên bố replication SAC;
+  — tuyên bố PPO/DQN mạnh hơn Chen;
+  — tuyên bố bypass CRS / AWS WAF / WAF cloud;
+  — lấy HTTP 200 làm TASR;
+  — dùng LLM sinh payload;
+  — lấy Wilcoxon p = 0,5 làm khác biệt có ý nghĩa;
+  — dùng đánh số RQ1–RQ4 của HTML dịch thay PDF v2.
+
+
+1.5. Cấu trúc báo cáo
+---------------------
+Chương 2 trình bày cơ sở, công thức, và chuỗi bằng chứng. Chương 3 mô tả
+hai nhánh. Chương 4 báo kết quả. Chương 5–6 thảo luận và hạn chế. Chương 7
+kết luận. Phụ lục A là câu được/cấm khi bảo vệ; Phụ lục B catalog 27 action;
+Phụ lục C điểm yếu artifact; Phụ lục D đường dẫn số liệu.
+
+
+================================================================================
+CHƯƠNG 2. CƠ SỞ LÝ THUYẾT VÀ CÔNG TRÌNH LIÊN QUAN
+================================================================================
+
+2.1. XSS và phát hiện bằng học sâu
+----------------------------------
+XSS phản xạ, lưu trữ hoặc DOM-based đều có cùng điều kiện thành công: mã
+kẻ tấn công phải được trình duyệt thực thi. Detector dựa trên học máy ánh
+xạ chuỗi payload sang vector (túi từ, n-gram, hoặc embedding) rồi phân
+lớp lành/độc. Mereani và Howe (2018) công bố tập Payloads.csv dùng trong
+cả Pasini và đồ án này (43.217 dòng). Fang et al. (2018) đưa LSTM vào phát
+hiện XSS. Độ chính xác cao trên tập tĩnh không kéo theo bền vững trước
+đột biến đối kháng: tiền xử lý lower-case, unescape entity, unquote URL
+có thể hủy đúng những biến thể mà Table 2 cố tình tạo.
+
+
+2.2. Tấn công đối kháng XSS bằng học tăng cường
+-----------------------------------------------
+Fang et al. (2018) dùng Dueling DQN, Escape Rate dưới 10%. Zhang et al.
+(2020) dùng MCTS, chiến lược thoát hạn chế, chi phí cao. Wang et al.
+(2022) soft Q-learning, ER khoảng 85%. Chen et al. (2022) dùng SAC, 27
+đột biến Table 2, preprocess giữ 10% token phổ biến, ER trên 90% trên
+MLP/LSTM/CNN và công cụ thương mại. Dataset ~90k của Chen không công khai.
+
+Không gian hành động Table 2 gồm entity HTML, đổi hoa/thường thẻ và thuộc
+tính, nhiễu khoảng trắng, mã hóa JS, đổi alert, vbscript, null-byte, v.v.
+(danh sách đủ 27: Phụ lục B). MDP của Chen/Pasini quan sát lịch sử action
+(độ dài tối đa 15), không nhúng bản thân payload — policy dễ học chuỗi tạo
+OOV.
+
+
+2.3. Pasini et al. (2026) — khung đánh giá
+-----------------------------------------
+Pasini et al. tái lập Chen trên Mereani, PPO thay SAC, sigmoid thay softmax,
+Oracle FastAPI + Jinja |safe + BeautifulSoup + zss so với payload "abc".
+DummyDetector trên server luôn trả True — không sanitize.
+
+Kết luận paper (PDF v2):
+  — Replication: PPO lọt detector DL với ER ~99%, gần Chen.
+  — RQ1/TH1: mutation phá XSS nhẹ, RR(E) ~6–7%.
+  — RQ2/TH2: preprocess/OOV phá XSS nặng, RR(V) ~93–98%, OR(V) ~44–47%.
+  — RQ3: Oracle-in-loop, ER vẫn >96%, RR(V) ~0.
+
+Đồ án bám khung (mẫu đối kháng phải còn độc theo oracle), không bám ER 99%
+và không bám Oracle BeautifulSoup cho nhánh kết luận chính.
+
+
+2.4. Công thức
+--------------
+Escape Rate:
+
+    ER = (# payload độc mà detector gọi lành) / |adversarial|
+
+Oracle nhị phân và Ruin Rate trên tập M:
+
+    O(p) = 1  nếu Oracle = Malicious
+    RR(M) = 1 − (1/|M|) Σ O(m)
+
+Tỉ lệ token ngoài từ vựng sau preprocess:
+
+    OR(V) = (# token None) / |V|
+
+E là tập lọt detector. V là E sau tokenize, pad, thay OOV bằng None.
+
+Với lab CRS (paper không có):
+
+    Escape     = tỉ lệ HTTP 200          (phụ, không phải thành công)
+    TASR       = #BYPASS_EXEC / N        (chính; ER có oracle thực thi)
+    Δ          = Escape − TASR           (khoảng TH2: lọt HTTP, hết độc)
+
+Ba nhãn P5:
+    BLOCK          HTTP 403
+    BYPASS_NOEXEC  HTTP 200, JavaScript không chạy
+    BYPASS_EXEC    HTTP 200 và JavaScript chạy
+
+Chỉ TASR được viết là tấn công thành công.
+
+
+2.5. Evidence → Finding → Path
+------------------------------
+Bảng 2.1. Chuỗi bằng chứng (số đo từ lab, không suy diễn)
+
+ID  Evidence                                                      Finding                                         Path
+--  ------------------------------------------------------------  ----------------------------------------------  ------------------------------------------
+E1  filter_report.json: 3542/15149 (23,4%) Malicious Mereani      Oracle BeautifulSoup+zss không tương đương XSS  Lọc lab bằng oracle thực thi; RR gốc = 0
+    chỉ đổi DOM, không execute JSDOM                                                                              trên 10.824 mẫu
+E2  mutators.py @ a299bb6: A18 return payload; A20 stub;          Table 2 paper ≠ code                            Lab viết lại 27 action; không import
+    A21 alert(1) → (1)(1)                                                                                         mutators.py vào train nhánh B
+E3  LabelEncoder.fit_transform từng payload; Table 4 lab          Ba mạng một bộ số; token-id không ổn định       Nhánh A giữ bug để tái lập ER ~99%;
+    trùng 99,67 / 100 / 99,83                                                                                     nhánh B khép encode
+E4  Nhánh A data/10: LSTM ER 98,78%, RR(V) 98,54%,                Tái lập replication + TH2 trên đúng split       Viết “protocol lặp lại được”, không
+    OR(V) 48,5%                                                                                                   “reproduced Chen 99%”
+E5  Nhánh A RQ3 LSTM+Oracle: ER 98,34%, RR = 0, OR(V) 1,69%       Claim Pasini RQ3 lặp lại được với Oracle DOM     Không đồng nhất với XSS còn chạy JS
+E6  Nhánh B P3: LSTM acc 0,991; PPO 3×20k ER tb 0,75%             Khi khép OOV, ER 99% biến mất                    Không viết replication ER 99% trên
+                                                                                                                  lab JSDOM
+E7  Nhánh B P4: PPO ER=TASR=0,25%; Dueling DQN 1,08%; RR=0        Oracle execute kéo ER về sàn FN                  Bảng PPO vs DDQN; không khoe thuật toán
+E8  P5 CRS PL1: catalog Table 2/mở rộng = 0 BYPASS_EXEC;          WAF không dính None; lọt HTTP ≠ còn độc          TASR bắt buộc; không train RL trên CRS
+    DOMPurify Δ = 1
+
+
+================================================================================
+CHƯƠNG 3. PHƯƠNG PHÁP
+================================================================================
+
+3.1. Hai nhánh thí nghiệm
+-------------------------
+Pipeline bắt buộc (đúng paper):
+
+    payload độc (Oracle = 1, RR gốc = 0)
+      → agent chọn 1/27 action Table 2, tối đa 15 bước
+      → detector (A: MLP/LSTM/CNN; B: LSTM; P5: CRS / DOMPurify)
+           lọt → tập E → ER
+      → Oracle(E)                  → RR(E)     RQ1 / TH1
+      → preprocess E → V, đếm None → OR(V)     RQ2 / TH2
+      → train lại, reward âm nếu hết độc
+                                   → ER', TASR RQ3
+
+Bảng 3.1. Hai nhánh — cùng 27 mô tả Table 2, khác encode và Oracle
+
+Nhánh              Dataset / encode                                      Oracle                              Mục tiêu
+-----------------  ----------------------------------------------------  ----------------------------------  --------------------------------
+A — sát Pasini     Artifact data/10 (Table 3).                           DOM-diff vs "abc"                   Tái lập ER ~99% và RQ3
+                   LabelEncoder.fit_transform từng mẫu
+B — đồ án          Mereani lọc JSDOM, split kiểu Table 3.                JSDOM hook + Playwright hold-out    Khép TH2; đo TASR trên CRS
+                   id cố định theo vocab
+
+Nhánh A dùng mutators.py của artifact (kể cả A18 no-op, A21 cho (1)(1)).
+Nhánh B dùng lab/src/actions.py (A18/A20/A21 làm đúng mô tả paper).
+Không trộn ER ~99% với ER ~0,75%.
+
+
+3.2. So sánh Chen / Pasini / đồ án
+----------------------------------
+Bảng 3.2
+
+Hạng mục     Chen 2022                         Pasini 2026                      Đồ án
+-----------  --------------------------------  -------------------------------  ------------------------------------------
+Dataset      XSSed+Alexa ~90k, không public    Mereani + Oracle DOM,            A: đúng data/10. B: Mereani JSDOM
+                                               undersample
+Detector     MLP LSTM CNN + SafeDog/XSSChop    MLP LSTM CNN                     A: đủ 3 mạng. B: LSTM + CRS PL1/PL2
+                                                                                 + DOMPurify
+Agent        SAC                               PPO SB3                          PPO (replication) và Dueling DQN
+State        lịch sử action                    lịch sử action (code)            Giữ lịch sử action như paper
+Reward       +10 / −1                          PDF −2 nếu vỡ; code −5           A: đúng code −5. B: R_exec
+                                                                                 (−2 hết độc; +10 chỉ khi lọt và execute)
+Oracle       không                             BS4 + zss                        A: như paper. B: JSDOM; Playwright 4 seed
+Metric       ER                                ER + RR + OR                     A: ER/RR/OR. B: TASR + Δ
+Action       27 mô tả                          27, A18/A20/A21 lỗi              B đủ 27 + parser_alive / browser_alive
+
+
+3.3. Oracle
+-----------
+Pasini (nhánh A). FastAPI nhét payload vào Jinja |safe. DummyDetector luôn
+True. O(p) = 1 khi cây DOM khác trang "abc". Hệ quả: <div>hello</div> =
+Malicious. Paper mục 8 tự nhận Oracle “may be subject to misclassification
+and depend on the specific templates”.
+
+Đồ án (nhánh B). JSDOM runScripts: dangerously. Hook alert, confirm, prompt,
+print, eval, Function, document.title, cookie, và cờ __XSS_ORACLE.
+parser_changed chỉ tín hiệu phụ — không đủ để gọi là XSS. Playwright
+Chromium hold-out trên 4 seed; không dùng để train.
+
+
+3.4. Dataset và split
+---------------------
+Mereani Payloads.csv (latin-1): 43.217 dòng, 15.149 độc / 28.068 lành.
+
+Nhánh A không gọi lại prepare_dataset.py. Dùng CSV artifact đã phát hành.
+
+Bảng 3.3. data/10 so Table 3 paper
+
+                         Detector train / val / test      Agent train / val / test
+-----------------------  -------------------------------  -----------------------------
+Paper Malicious          2.883 / 721 / 901                2.883 / 712 / 901
+Artifact CSV Malicious   2.883 / 721 / 901                2.883 / 721 / 901
+Artifact CSV Benign      2.883 / 721 / 901                0 / 0 / 0
+Paper Benign             2.884 / 721 / 902                0 / 0 / 0
+
+Agent val paper ghi 712, CSV artifact là 721. Đồ án dùng CSV phát hành.
+Vocab 720 token (10% token phổ biến). filtered_oracle.csv: 18.020 dòng
+cân bằng sau Oracle DOM-diff và undersample. FMereani.csv: 43.217.
+filtered.csv (chỉ HTTP): 27.112.
+
+Bảng 3.4. Split nhánh B (JSDOM, seed 42, tỉ lệ Table 3)
+
+                         n
+-----------------------  -----------------------------
+Độc còn execute, giữ     10.824
+Độc chỉ đổi DOM, loại    3.542 (23,4%)
+Độc không DOM không JS   783
+Lành false-positive      10 (loại)
+RR trên tập độc đã giữ   0,0
+Detector train/val/test  3.463 / 865 / 1.084 mỗi lớp
+Agent train/val/test     3.463 / 865 / 1.084 chỉ độc
+Vocab                    1.191 token (10% + <pad>, None)
+
+
+3.5. Detector và agent
+----------------------
+Nhánh A. MLP / LSTM / CNN đúng code artifact: embedding_dim = 8, SGD
+lr = 0,001, batch = 16, tối đa 150 epoch, patience = 10, BCE + sigmoid.
+XSSDataset.MAX_LENGTH = 30 (code; paper viết pad 200). PPO SB3 MlpPolicy,
+250.000 timesteps, tối đa 15 bước, 27 action, device CPU. Khi train, eval
+32 episode để chọn best_model (eval 721 quá chậm trên máy lab); Escape
+Rate báo cáo trên đủ 901 mẫu agent-test. Reward replication: +10 / −1.
+RQ3: −5 nếu chuỗi reconstruct không còn “XSS” theo Oracle DOM.
+
+Nhánh B. LSTM embedding 8, hidden 128, pad 40 (trung vị số token = 6),
+Adam lr = 0,001 (SGD trên split JSDOM kẹt acc 50% — lệch đã ghi). PPO
+20.000 bước × 3 seed (42, 43, 44); thêm seed 45 ở 80.000 bước. P4: PPO
+3 seed + DQN SB3 1 seed + Dueling DQN 3 seed, hàm thưởng R_exec:
+
+    hết độc JSDOM                         −2     (bám PDF, không bám code −5)
+    còn độc, detector bắt                 −1
+    còn độc VÀ detector gọi lành          +10    (success)
+
+Khác artifact: Pasini vẫn done=True khi detector lọt dù Oracle fail.
+Nhánh B không tính success nếu không execute.
+
+State cả hai nhánh: Box lịch sử action, không nhúng payload (giữ như paper;
+ghi vào hạn chế).
+
+
+3.6. CRS và DOMPurify (P5)
+--------------------------
+Luồng:
+
+    payload → CRS PL1 (:18080) hoặc PL2 (:18081)
+            → (tuỳ chọn) DOMPurify trên app :13000
+            → Oracle execute (JSDOM; Playwright hold-out)
+
+Paranoia CRS 1 và 2, anomaly inbound 5. Chỉ bind 127.0.0.1. Ảnh Docker
+owasp/modsecurity-crs:nginx-alpine và lab-app. Không claim WAF cloud.
+
+Gate trước khi huấn luyện RL trên CRS: tồn tại ít nhất một payload Table 2
+vừa execute vừa HTTP 200 trên PL1. Gate không đạt → không train RL trên
+CRS, không bịa payload ngoài Table 2, không LLM.
+
+
+3.7. Lệch protocol đã ghi nhận
+------------------------------
+Nhánh A (môi trường, không đổi protocol): int(embedding_dim) vì PyTorch
+2.14 không nhận 8.0; TemplateResponse Starlette 1.x. Pad 30 theo code
+artifact, không pad 200 theo câu chữ paper. Báo cáo seed 42; paper 10 seed.
+
+Nhánh B: Adam thay SGD; pad 40; 3 seed PPO (paper 10); eval agent 400/1.084
+mẫu đầu test; reward R_exec −2 và success bắt buộc execute.
+
+CNN nhánh A seed 42: ER vẫn ~99% nhưng RR(V) = 1,35% so với paper 92,57%
+— agent lặp thẻ <script>, LabelEncoder vẫn lệch id. Đây là phương sai một
+seed, không phải fail replication ER. Ghi rõ khi trích bảng.
+
+
+================================================================================
+CHƯƠNG 4. KẾT QUẢ
+================================================================================
+
+4.1. P1 — Oracle thực thi và Mereani (nhánh B)
+----------------------------------------------
+Bảng 4.1. Lọc Mereani bằng oracle thực thi JSDOM
+
+Hạng mục                         n
+-------------------------------  -------------------------------
+Mereani gốc                      43.217 (15.149 độc / 28.068 lành)
+Độc còn execute, giữ             10.824
+Độc chỉ đổi DOM, loại (W1)       3.542 (23,4%)
+Độc không DOM không JS           783
+Lành bị oracle gọi độc           10
+RR trên tập độc đã giữ           0,0
+
+Pasini giữ 3.542 mẫu parser-only vì DOM đổi. Đồ án loại. Đó là đo W1 trên
+đúng nguồn Mereani. Gate RR gốc = 0: đạt.
+
+
+4.2. P2 — 27 action
+-------------------
+Khi action thật sự đổi payload, đo trên 3 seed:
+  <script>alert(1)</script>
+  <img src=x onerror=alert(1)>
+  javascript: href
+
+Giữ execution:
+  A1, A2, A3, A4, A8, A11, A14, A15, A17, A18, A19, A21, A22, A23, A27.
+
+Parser sống, JavaScript chết (W8):
+  A5, A6, A7, A12, A13, A20, A25.
+  A9, A24, A26 chết trên một phần seed.
+
+A10 và A16 no-op trên 3 seed không có http:// hoặc data: — đúng kỳ vọng.
+
+Lab: A18 không còn no-op (artifact return payload). A21 không còn (1)(1).
+Catalog đủ 27: Phụ lục B.
+
+
+4.3. Nhánh A — tái lập sát artifact (data/10, seed 42)
+-----------------------------------------------------
+
+4.3.1. Table 4 — detector
+
+Test data/10/detectors/test.csv, n = 1.802. Cả ba mạng: TP = 901, FP = 3,
+TN = 898, FN = 0.
+
+Bảng 4.2
+
+                         Precision    Recall    Accuracy    F1
+-----------------------  -----------  --------  ----------  --------
+Paper MLP = LSTM = CNN   99,67%       100%      99,83%      99,83%
+Lab LSTM                 99,67%       100%      99,83%      99,83%
+Lab MLP                  99,67%       100%      99,83%      99,83%
+Lab CNN                  99,67%       100%      99,83%      99,83%
+
+Trùng tới hai chữ số. Ba mạng một bộ số = W4 đo được, không phải copy bảng.
+Checkpoint: artifact/Adversarial_RL_XSS/runs/{lstm,mlp,cnn}/10/run_0/
+
+
+4.3.2. PPO không Oracle (250.000 bước, test 901)
+
+Script gốc src/train_adversarial_agent.py. Test adversarial_agents/test.csv.
+
+Bảng 4.3
+
+       ER paper     ER lab           RR(E) paper  RR(E) lab  RR(V) paper  RR(V) lab  OR(V) paper  OR(V) lab
+-----  -----------  ---------------  -----------  ---------  -----------  ---------  -----------  ---------
+LSTM   98,62%       98,78% (890/901) 6,34%        8,99%      97,31%       98,54%     47,49%       48,54%
+MLP    99,73%       98,67%           7,07%        10,24%     97,84%       98,54%     44,76%       45,01%
+CNN    98,25%       98,89%           6,36%        0%         92,57%       1,35%      43,85%       2,42%
+
+Paper: trung bình 10 seed. Lab: seed 42.
+
+LSTM và MLP khớp cơ chế TH2 (OOV cao, RR(V) ~98%). CNN seed 42 vẫn ER ~99%
+nhưng ít token None — agent spam <script>, LabelEncoder vẫn lệch id. Đây là
+phương sai một seed, không fail replication ER.
+
+Val LSTM: reward −8,57 tại 25k bước, ổn định ~5,8 từ 50k đến 250k. Entropy
+3,29 → 0,16 (policy chắc). RR gốc trên E (payload chưa đột biến) = 0.
+OR gốc ~6,20%.
+
+LSTM PPO không Oracle thêm seed 43 và 44 ở 50.000 bước: ER 97,34% và
+96,56%. Trung bình 3 seed (42 @ 250k + 43/44 @ 50k) = 97,56% so với paper
+98,62% (10 seed @ 250k).
+
+Kết luận mục này: tái lập được hiện tượng paper khi dùng đúng dataset, đúng
+LabelEncoder, đúng mutators.py. ER ~99% là artifact TH2 (OOV), không phải
+tấn công XSS ổn định.
+
+
+4.3.3. RQ3 — Oracle-in-loop (code −5), test 901
+
+Bảng 4.4
+
+                      ER paper    ER lab     RR(V) lab    OR(V) lab    Ghi chú
+--------------------  ----------  ---------  -----------  -----------  --------------------------------
+LSTM 250k seed 42     98,13%      98,34%     0            1,69%
+MLP 250k seed 42      97,37%      97,89%     0            1,76%        50k chỉ 83,8% — thiếu bước
+CNN 250k seed 42      96,89%      96,00%     0,12%        2,17%        50k đã 96,00%; 250k cùng 865/901
+
+Cả ba mạng khớp claim RQ3: ER > 96%, RR ≈ 0 theo Oracle DOM. MLP cần đủ
+250k; CNN hội tụ từ 50k.
+
+Câu được viết: “Trên đúng artifact và split data/10, tái lập ER ~99%
+(replication), RR(V) ~98% (TH2), và RQ3 LSTM/MLP/CNN ER > 96% với RR ≈ 0
+theo Oracle DOM.”
+
+Câu cấm: coi ER 99% sau Oracle DOM là XSS còn chạy JavaScript.
+
+
+4.4. Nhánh B P3 — LSTM + PPO, encode ổn định
+--------------------------------------------
+Mục tiêu: lặp protocol khi đã khép TH2, không khoe ER.
+
+LSTM test n = 2.168: Accuracy 0,991, Precision 0,990, Recall 0,992,
+F1 0,991. False-negative không đột biến trên 400 mẫu agent-test: 1/400 =
+0,25% (sàn ER).
+
+Bảng 4.5. PPO không Oracle trong reward
+
+Seed    Bước    Escape    ER       RR(E)    OR(V) trên E
+------  ------  --------  -------  -------  ------------
+42      20k     1         0,25%    0        0,75
+43      20k     2         0,50%    0        0,28
+44      20k     6         1,50%    0,33     0,40
+45      80k     8         2,00%    0,12     0,43
+
+ER trung bình 3 seed × 20k = 0,75%. 80k chỉ lên 2%. Pasini artifact > 96%.
+
+Không tái lập được ER cao của paper. Đó không phải train hỏng, vì:
+
+  (1) Token id cố định theo vocab (artifact fit LabelEncoder từng mẫu).
+  (2) Action lab giữ XSS; preprocess .lower() + unescape + unquote hủy
+      mixed-case và entity trước khi LSTM thấy.
+  (3) Dataset đã lọc oracle thực thi → token <script> / alert( nằm trong
+      10% vocab, khó OOV.
+
+Các mẫu có escape thì OR(V) cao (28–75%) → lối tắt TH2 vẫn tồn tại, nhưng
+hiếm khi đã đóng bug implement.
+
+Câu được viết: “Khi khép lối token-id không ổn định và mutation bị preprocess
+đảo, PPO Table 2 không còn ER ~99%. Số escape còn lại mang OOV cao, đúng
+cơ chế TH2.”
+
+Không viết: “replication thành công ER 99%” trên lab JSDOM.
+Không viết: “replication thất bại vì train hỏng”.
+
+
+4.5. Nhánh B P4 — Oracle-in-loop và PPO vs Dueling DQN
+-----------------------------------------------------
+Đối tượng: detector LSTM P3, không phải CRS (gate PL1 chưa có BYPASS_EXEC).
+Tập đánh giá: 400 mẫu đầu splits/adversarial_agents/test.csv. Sàn FN =
+0,25%.
+
+Bảng 4.6. PPO vs Dueling DQN trên LSTM đã khép OOV
+
+Agent                         Oracle train    ER        TASR      RR(E)
+----------------------------  --------------  --------  --------  --------
+P3 PPO, 3 seed × 20k          không           0,75%     ~0,58%    0–0,33
+P4 PPO + R_exec, 3 seed       có              0,25%     0,25%     0
+P4 DQN SB3 MlpPolicy, seed 42 có              0,25%     0,25%     0
+P4 Dueling DQN, 3 seed        có              1,08%     1,08%     0
+Sàn FN detector               —               0,25%     0,25%     0
+
+P4 PPO từng seed: 0,25% / 0,25% / 0,25%.
+Dueling DQN từng seed: 1,75% / 0,75% / 0,75%.
+
+Mọi agent lab sát sàn FN. Không có ER > 96%. Oracle-in-loop kéo PPO về
+đúng sàn và RR(E) = 0. Dueling DQN trung bình 1,08% > PPO 0,25% nhưng
+cùng bậc 1%, RR = 0 — không đủ để kết luận thuật toán “thắng” detector.
+
+Wilcoxon P3 vs P4 PPO (cặp 3 seed): n hiệu = 2, p two-sided exact = 0,5.
+Chỉ mô tả: P4 ≤ P3 mọi seed. Không tuyên bố ý nghĩa thống kê.
+
+Histogram action trên một episode thành công không đủ để kết luận policy
+dùng A1/A6–A13.
+
+Câu được viết: “Trên LSTM đã khép OOV, R_exec kéo ER về sàn false-negative
+(0,25%), RR(E) = 0. Không tái lập ER > 96% của Pasini khi Oracle là thực
+thi JavaScript.”
+
+Câu cấm: PPO/DQN “thành công hơn Chen”.
+
+
+4.6. Đối chiếu hai nhánh
+------------------------
+Bảng 4.7. Cùng protocol, khác encode
+
+                         Nhánh A data/10 + LabelEncoder    Nhánh B JSDOM + id cố định
+-----------------------  --------------------------------  ---------------------------------
+LSTM acc                 99,83%                            99,1%
+PPO không Oracle ER      98,78%                            0,75%
+PPO + Oracle ER          98,34%                            0,25%
+RR(V) không Oracle       98,54%                            ít escape; OR trên E 28–75%
+RR sau Oracle-in-loop    0 (Oracle DOM)                    0 (Oracle JS)
+
+ER 99% là artifact encode/OOV, không phải tấn công XSS ổn định. Cùng 27
+action. Khác encode và định nghĩa “độc”.
+
+
+4.7. P5 — CRS, DOMPurify, transfer, Playwright
+----------------------------------------------
+P5 là đánh giá lab WAF, không phải bắt buộc TASR > 0. Gate BYPASS_EXEC trên
+CRS PL1 không đạt sau khi quét đủ catalog Table 2. Không train RL lên CRS.
+
+Bảng 4.8. TASR trên CRS paranoia 1
+
+Thí nghiệm                              n        TASR CRS PL1
+--------------------------------------  -------  ------------
+3 seed × 27 action, sink /html          84       0
+Cặp 2 action                            672      0
+Bộ ba keeper (7 keeper × 2 seed)        686      0
+Mereani đã decode × (gốc + 27 action)   1.120    0
+Transfer PPO P3/P4 (80 payload)         80       0
+TAP-B + E1–E10                          60       0
+Sink /attr và /js, 84 payload           168      0
+
+Bảng 4.9. Cùng 84 payload /html
+
+Target       n     BLOCK    NOEXEC    EXEC    Escape    TASR     Δ
+-----------  ----  -------  --------  ------  --------  -------  ------
+CRS PL1      84    84       0         0       0         0        0
+CRS PL2      84    84       0         0       0         0        0
+App (không
+  WAF)       84    0        13        71      1,00      0,845    0,155
+DOMPurify    84    0        84        0       1,00      0        1,00
+
+Transfer LSTM-agent → CRS, 80 payload agent-test, sink /html:
+
+Agent              PL1 TASR    PL2 TASR    App TASR    App Δ
+-----------------  ----------  ----------  ----------  ------
+P3 PPO seed 42     0           0           0           0,99
+P4 PPO-oracle      0           0           0,0125      0,99
+
+Agent train trên LSTM không chuyển thành lọt CRS. App TASR P4 thấp vì
+Mereani nhiều URL, khác seed <script>.
+
+Playwright Chromium, cùng hook alert, 4 seed:
+
+Payload                            JSDOM       Chromium
+---------------------------------  ----------  ----------
+<script>alert(1)</script>          execute     execute
+<img src=x onerror=alert(1)>       execute     execute
+javascript: href                   execute     execute
+<div>hello</div>                   không       không
+
+Hold-out khớp JSDOM trên seed. Không có mẫu Chromium-qua-WAF vì không có
+BYPASS_EXEC CRS.
+
+Mereani 400 URL thô qua PL1 (trước đó): 483 BLOCK, 1 NOEXEC (encode nhiều
+lớp), 0 EXEC — Escape ≠ TASR.
+
+Kết luận P5:
+  (1) CRS 4 paranoia 1 chặn hết Table 2 (1, 2, 3 action) và agent LSTM
+      transfer.
+  (2) DOMPurify: Escape 100%, TASR 0 — Δ = 1, bệnh “lọt HTTP nhưng hết độc”.
+  (3) Không train RL trên CRS: catalog chưa có primitive BYPASS_EXEC.
+  (4) Paper không đụng WAF; đây là phần đồ án vượt Pasini bằng kết quả âm.
+
+Câu được viết: “Trên lab CRS 4 paranoia 1, catalog Chen/Pasini và PPO train
+LSTM có TASR = 0. WAF không dính OOV-None.”
+
+Câu cấm: “bypass CRS”, “TASR > 0”, train RL rồi đổ lỗi thuật toán.
+
+
+================================================================================
+CHƯƠNG 5. THẢO LUẬN
+================================================================================
+
+Pasini sửa Chen đúng hướng: mẫu đối kháng phải được kiểm tra còn độc, không
+chỉ “detector gọi lành”. Oracle DOM của họ vẫn gọi HTML injection là XSS
+(E1, W1). RR(V) đo trên chuỗi đã thay None rồi join bằng khoảng trắng gần
+như tautology (W2): chuỗi không còn HTML thì Oracle DOM tất yếu “hỏng”.
+Claim TH2 sạch hơn khi đọc OR(V) và khi Oracle chạy trên payload thật,
+không chỉ trên chuỗi reconstruct.
+
+Nhánh A chứng minh điều kiện đủ để số paper lặp lại: đúng split data/10,
+đúng LabelEncoder từng mẫu, đúng mutators.py, đúng Oracle DOM. Table 4
+trùng tuyệt đối. ER ~99% và RQ3 ER > 96% lặp lại được. Đó là protocol
+replication, không phải replication trung thành Chen (khác dataset, khác
+SAC, khác embedding, bỏ SafeDog/XSSChop — W3).
+
+Nhánh B chứng minh điều kiện cần của hiện tượng 99%: khi khép token-id và
+đổi định nghĩa độc thành “JavaScript chạy”, cùng 27 action không còn ER
+cao. Oracle-in-loop không tìm thêm tấn công thật — nó cắt các escape không
+còn execute và kéo ER về sàn FN. Dueling DQN không đảo kết luận.
+
+CRS chứng minh hệ quả thực tiễn: detector không dính None thì catalog
+Table 2 không tạo BYPASS_EXEC. DOMPurify cho Δ = 1 — đúng bệnh “lọt HTTP
+nhưng hết độc”, cùng họ TH2 nhưng ở tầng sanitizer thay vì OOV.
+
+Đóng góp so paper: oracle thực thi; catalog 27 action làm đủ mô tả;
+TASR/Δ trên CRS + DOMPurify; bảng PPO vs Dueling DQN trên detector đã
+khép OOV.
+
+Không đóng góp: generator XSS mới; bypass CRS; đánh WAF cloud; cải tiến
+thuật toán RL.
+
+
+================================================================================
+CHƯƠNG 6. HẠN CHẾ (THREATS TO VALIDITY)
+================================================================================
+
+(1) JSDOM không phủ mọi XSS (mutation XSS, DOM clobbering, sink framework).
+    Playwright chỉ 4 seed hold-out, không dùng để train.
+
+(2) Mereani 2018 tập trung alert / <script>. TAP-B không làm LSTM nhánh B
+    vỡ (FN = 0 trên 17 mẫu chạy). Tập không đại diện XSS hiện đại.
+
+(3) Table 2 lỗi thời (vbscript, %00). A10/A16 no-op trên seed không URL.
+
+(4) Nhánh A báo cáo chủ yếu seed 42; paper công bố trung bình 10 seed.
+    CNN RR(V) seed 42 lệch trung bình paper (1,35% vs 92,57%) dù ER vẫn
+    ~99%. Lưới 10 seed (42–51 × 3 mạng × 2 pha) được chạy thêm; khi có
+    seed10_summary.json, bổ sung mean±std vào bảng 4.3–4.4.
+
+(5) Nhánh B: 3 seed, eval 400 mẫu, pad 40, Adam. Wilcoxon n = 2 vô nghĩa
+    thống kê.
+
+(6) State MDP chưa nhúng payload (giữ như paper). Policy không “nhìn”
+    chuỗi XSS, dễ học lịch sử action tạo OOV trên nhánh A.
+
+(7) Histogram action P4: một escape = sàn FN, không kết luận policy dùng
+    A1 hay A6–A13.
+
+(8) CRS paranoia 1–2 lab, inbound anomaly 5, chỉ 127.0.0.1. Không phải
+    rule set production hay WAF nhà cung cấp.
+
+(9) Reward paper RQ3 ghi −2; code artifact dùng −5. Nhánh A bám code.
+    Nhánh B bám PDF (−2) và siết success.
+
+(10) Không transfer LSTM→CNN, không adversarial training detector, không
+     so Fang/Wang/Zhang bằng cùng protocol — các thí nghiệm reviewer
+     paper cũng thiếu (W9).
+
+
+================================================================================
+CHƯƠNG 7. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
+================================================================================
+
+7.1. Kết luận
+-------------
+(1) Khung Pasini (Oracle → Ruin Rate → Oracle-in-loop) là đúng chỗ bám khi
+    đánh giá tấn công đối kháng XSS bằng RL.
+
+(2) Trên đúng data/10 và code artifact a299bb6, ER ~99% và RQ3 ER ~98%
+    tái lập được với Oracle DOM (seed 42: Table 4 trùng; LSTM ER 98,78%;
+    RQ3 LSTM/MLP/CNN = 98,34 / 97,89 / 96,00%, RR ≈ 0).
+
+(3) Thủ phạm là token-id không ổn định cộng OOV None (TH2), không phải
+    “RL sinh XSS mạnh”.
+
+(4) Khi encode ổn định và Oracle là thực thi JavaScript, PPO/DDQN Table 2
+    về sàn false-negative (khoảng 0,25–1,08%), RR = 0.
+
+(5) CRS 4 paranoia 1 và DOMPurify: TASR = 0 trên catalog Chen/Pasini;
+    Δ Purify = 1. Không huấn luyện RL khi chưa có primitive BYPASS_EXEC.
+
+Một câu bảo vệ (khoảng 20 giây):
+
+    “Chen báo Escape Rate khoảng 99% mà không kiểm tra payload còn là XSS.
+    Pasini thêm Oracle DOM. Em bám khung đó, siết Oracle thành thực thi
+    JavaScript, và đo CRS. Khi giữ bug encode của artifact thì ER khoảng
+    99% lặp lại được; khi khép bug thì ER rơi còn khoảng 1%. Trên CRS lab,
+    catalog Table 2 có TASR = 0.”
+
+
+7.2. Hướng phát triển (không nằm trong phạm vi đồ án này)
+---------------------------------------------------------
+  — Hoàn tất lưới 10 seed nhánh A để báo mean±std như bảng paper.
+  — Nhúng payload vào state MDP (hiện chỉ lịch sử action).
+  — Oracle trình duyệt đầy đủ hơn (mXSS, sink DOM XSS hiện đại).
+  — Chỉ train RL trên WAF khi đã có ít nhất một primitive BYPASS_EXEC
+    trong không gian action.
+  — Không mở rộng sang WAF cloud hay LLM generator nếu không đổi câu hỏi
+    nghiên cứu và phạm vi pháp lý.
+
+
+================================================================================
+TÀI LIỆU THAM KHẢO
+================================================================================
+
+[1] Pasini, S., Maragliano, G., Kim, J., Tonella, P. (2026). Cross-site
+    scripting adversarial attacks based on deep reinforcement learning:
+    Evaluation and extension study. Journal of Systems and Software.
+    DOI: 10.1016/j.jss.2026.112856. arXiv:2502.19095v2.
+
+[2] Chen, L., Tang, C., He, J., Zhao, H., Lan, X., Li, T. (2022). XSS
+    adversarial example attacks based on deep reinforcement learning.
+    Computers & Security, 120, 102831.
+
+[3] Mereani, F. A., Howe, J. M. (2018). Detecting cross-site scripting
+    attacks using machine learning. In AMLTA 2018.
+
+[4] Fang, Y., Li, Y., Liu, L., Huang, C. (2018). DeepXSS: Cross site
+    scripting detection based on deep learning.
+
+[5] Wang, Y., et al. (2022). Soft Q-learning XSS adversarial examples.
+    Computers & Security, 113, 102554. ER ~85%.
+
+[6] Zhang et al. (2020). MCTS for XSS adversarial examples. IEEE Access.
+
+[7] Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.
+    (2017). Proximal Policy Optimization Algorithms. arXiv:1707.06347.
+
+[8] Haarnoja, T., Zhou, A., Abbeel, P., Levine, S. (2018). Soft
+    Actor-Critic. arXiv:1801.01290.
+
+[9] OWASP ModSecurity Core Rule Set (CRS) 4. Lab paranoia 1–2. Không
+    phải đánh giá nhà cung cấp WAF.
+
+[10] Cure53. DOMPurify. Đo Δ = Escape − TASR trên app lab.
+
+Artifact kèm [1]:
+  GitHub: https://github.com/GianlucaMaragliano/Adversarial_RL_XSS
+  commit a299bb6 (2025-01-08)
+  FigShare: Artifacts of XSS adversarial example attacks based on deep
+  reinforcement learning: A Replication and Extension study, 27959817.
+
+
+================================================================================
+PHỤ LỤC A. CÂU ĐƯỢC VIẾT / CÂU CẤM KHI BẢO VỆ
+================================================================================
+
+A.1. Được viết
+--------------
+1. Khung đánh giá theo Pasini et al. (2026): mẫu đối kháng phải còn độc
+   theo oracle thực thi.
+2. 23,4% nhãn Malicious Mereani chỉ đổi DOM — Oracle BeautifulSoup không
+   tương đương XSS.
+3. Trên artifact data/10, PPO tái lập ER ~99% và RQ3 ER 98,3% với RR = 0
+   theo Oracle DOM.
+4. Khi khép token-id, PPO Table 2 không còn ER ~99%; escape còn lại mang
+   OOV cao.
+5. Trên LSTM đã khép OOV, PPO ER = TASR = 0,25%, Dueling DQN 1,08%,
+   RR(E) = 0.
+6. Trên lab CRS 4 PL1, catalog Chen/Pasini có TASR = 0.
+
+A.2. Cấm viết
+-------------
+1. Replication thành công ER Chen 99% như thành công của đồ án.
+2. “Reproduced Chen’s numbers”; replication SAC.
+3. PPO/DQN mạnh hơn Chen.
+4. Bypass CRS; đánh AWS WAF / WAF cloud.
+5. CRS 200 = TASR; dùng LLM sinh payload.
+6. Wilcoxon p = 0,5 như khác biệt có ý nghĩa.
+7. RQ1–RQ4 theo HTML dịch cũ thay PDF v2.
+
+A.3. Câu hỏi hội đồng thường gặp
+--------------------------------
+Hỏi: Sao không 99%?
+Trả: Nhánh B khép LabelEncoder. Nhánh A vẫn ~99% trên đúng artifact.
+
+Hỏi: Có replication Chen không?
+Trả: Protocol replication theo Pasini. PPO không SAC. Mereani không phải
+     tập 90k của Chen (không public).
+
+Hỏi: Có bypass CRS không?
+Trả: Không. TASR = 0. HTTP 200 không phải thành công.
+
+Hỏi: Sao không 10 seed?
+Trả: Paper 10 seed. Em seed 42 đủ Table 4 và RQ3 ba mạng. Lưới 10 seed
+     chạy thêm, không bắt buộc để bảo vệ claim chính.
+
+Hỏi: Wilcoxon?
+Trả: n = 2, p = 0,5 — không pretent ý nghĩa thống kê.
+
+
+================================================================================
+PHỤ LỤC B. CATALOG 27 ACTION (TABLE 2)
+================================================================================
+
+Bảng B.1. Paper Table 2 → lab/src/actions.py (ACTION_META)
+
+Mã    Mô tả paper                                      Nhóm         Ghi chú artifact a299bb6
+----  -----------------------------------------------  -----------  -----------------------------
+A1    Thêm &#14 trước javascript                       entity       re.sub thay cả match; lab chèn, giữ word
+A2    Mixed-case tên thuộc tính HTML                   html-case    preprocess .lower() hủy trên detector
+A3    Space → / hoặc %0A / %0D                         whitespace
+A4    Mixed-case tên thẻ                               html-case    như A2
+A5    Bỏ > thẻ rỗng                                    html-tag     parser sống, JS chết (W8)
+A6    Thêm &NewLine; vào javascript                    entity       W8
+A7    Thêm &#x09 vào javascript                        entity       W8
+A8    HTML entity hex cho mã JS                        js-encode    unescape hủy trên detector B
+A9    Nhân đôi thẻ HTML                                html-tag     chết một phần seed
+A10   http:// → //                                     url          no-op nếu không có http://
+A11   HTML entity thập phân cho JS                     js-encode
+A12   Thêm &colon; vào javascript                      entity       W8
+A13   Thêm &Tab; vào javascript                        entity       W8
+A14   Thêm /drfv/ sau <script                          html-tag
+A15   () → backtick                                    js-syntax
+A16   Base64 data:                                     url          no-op nếu không có data:
+A17   Bỏ dấu nháy                                      html-tag
+A18   Unicode-encode JS                                js-encode    artifact: return payload (no-op); lab có thật
+A19   HTML entity cho chữ javascript                   entity
+A20   > thẻ đơn → <                                    html-tag     artifact stub &gt;&lt;; lab có thật
+A21   alert qua nối chuỗi                              alert        artifact: alert(1) → (1)(1); lab không nhân (1)
+A22   alert qua toString(30)                           alert
+A23   Chuỗi nhiễu trước payload                        noise
+A24   Comment trong thẻ                                html-tag     chết một phần seed
+A25   javascript → vbscript                            legacy       chết Chromium; browser_alive=False
+A26   %00 trong thẻ                                    legacy       chết một phần seed
+A27   alert qua /al/.source                            alert
+
+Khi action đổi payload (3 seed script / img / javascript:):
+  Giữ JS:     A1 A2 A3 A4 A8 A11 A14 A15 A17 A18 A19 A21 A22 A23 A27
+  W8:         A5 A6 A7 A12 A13 A20 A25
+  No-op URL:  A10 A16 nếu thiếu http / data:
+
+
+================================================================================
+PHỤ LỤC C. ĐIỂM YẾU ARTIFACT W1–W10 (ĐO ĐƯỢC)
+================================================================================
+
+W1  Oracle không chạy JavaScript (nặng nhất).
+    FastAPI + Jinja |safe + BeautifulSoup + zss vs "abc". DummyDetector
+    luôn True. <div>hello</div> = Malicious. 23,4% nhãn Mereani parser-only.
+
+W2  RR(V) gần tautology.
+    Reconstruct token rồi mới gọi Oracle. Chuỗi None không còn HTML.
+
+W3  Không phải replication trung thành Chen.
+    Mereani vs 90k; PPO vs SAC; embed 8 vs Word2Vec 32; sigmoid vs softmax;
+    bỏ SafeDog; detector và agent cùng distribution.
+
+W4  Table 4 trùng tuyệt đối ba mạng — detector quá dễ hoặc encode lỗi.
+    Lab tái lập đúng bộ số đó trên data/10.
+
+W5  MDP không nhìn payload.
+    observation_space = Box shape (max_steps,) = lịch sử action.
+
+W6  Paper ≠ code (reward).
+    PDF RQ3: −2. Code: −5.
+
+W7  Mereani 2018: chủ yếu alert / <script>.
+
+W8  Action liệt kê, code không làm đủ (A18 no-op, A20 stub, A21 (1)(1)).
+
+W9  Thiếu thí nghiệm reviewer: không transfer LSTM→CNN, không adversarial
+    training detector, 10 seed vs 1–3 seed, Wilcoxon n = 2.
+
+W10 Presentation artifact: README còn “submitted to COSE”; FastAPI title
+    “StreetView”; bs4 = "^0.0.2" là metapackage.
+
+
+================================================================================
+PHỤ LỤC D. FILE SỐ LIỆU VÀ LỆNH KIỂM TRA
+================================================================================
+
+Bảng D.1. Đường dẫn (repo /home/kali/Desktop/ATBMHTTT)
+
+Nội dung                         File
+-------------------------------  ----------------------------------------------------------
+Bản dán này                      huong_dan/BAO_CAO_DO_AN_FULL.txt
+Chương P6 markdown               huong_dan/2026-09-17_luan-van-P6.md
+Word đã generate                 huong_dan/Luan_van_ATBMHTTT_Pasini_2026.docx
+Khung + W1–W10                   huong_dan/PLAN_LAM_THEO_PASINI.md
+Sổ tay                           huong_dan/HUONG_DAN_CHI_TIET.md
+PDF paper                        papers/core/Pasini_2026_JSS_arXiv.pdf
+Replication data/10              lab/data/PASINI_FAITHFUL_RESULTS.md
+P1 P2                            lab/data/P1_P2_RESULTS.md
+P3                               lab/data/P3_RESULTS.md
+P4                               lab/data/P4_RESULTS.md
+PPO vs DDQN                      lab/data/PPO_VS_DDQN.md
+P5                               lab/data/P5_RESULTS.md
+Checkpoint nhánh A               artifact/Adversarial_RL_XSS/runs/{lstm,mlp,cnn}/10/run_0/
+Checkpoint nhánh B               lab/runs/p3/   lab/runs/p4/
+10-seed (khi xong)               lab/runs/pasini_faithful/seed10_summary.json
+
+
+Lệnh kiểm tra nhanh (không train live khi demo):
+
+    cd /home/kali/Desktop/ATBMHTTT/lab
+    docker compose up -d
+    curl -sS http://127.0.0.1:13000/health
+
+    node oracle/jsdom_oracle.mjs --payload '<script>alert(1)</script>'
+    node oracle/jsdom_oracle.mjs --payload '<div>hello</div>'
+    ../.venv/bin/python -m unittest tests.test_oracle tests.test_actions -v
+
+    curl -sS -o /dev/null -w 'app %{http_code}\n' \
+      'http://127.0.0.1:13000/html?q=%3Cscript%3Ealert(1)%3C/script%3E'
+    curl -sS -o /dev/null -w 'pl1 %{http_code}\n' \
+      'http://127.0.0.1:18080/html?q=%3Cscript%3Ealert(1)%3C/script%3E'
+
+Kỳ vọng: JSDOM script → execute; div → không. App 200, CRS PL1 403.
+
+Không quay video lúc train PPO, không chạy lưới 10 seed trên máy demo.
+
+
+================================================================================
+HẾT BẢN DÁN
+Điền [HỌ TÊN] / [MSSV] / [GVHD] rồi copy vào template Word nhà trường.
+Số thí nghiệm không bịa. Không trộn nhánh A và nhánh B.
+================================================================================

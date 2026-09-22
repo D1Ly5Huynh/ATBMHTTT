@@ -1,0 +1,11 @@
+.venv/
+**/__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/
+*.log
+*.pid
+artifact/Adversarial_RL_XSS/.venv/
+artifact/data.zip
+lab/node_modules/
+lab/data/jsdom_oracle.stderr.log

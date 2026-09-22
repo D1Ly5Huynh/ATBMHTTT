@@ -1,0 +1,1097 @@
+{
+  "summary": {
+    "n_pl1": 60,
+    "pl1_counts": {
+      "BLOCK": 60,
+      "BYPASS_NOEXEC": 0,
+      "BYPASS_EXEC": 0,
+      "ERROR": 0
+    },
+    "app_exec": 39,
+    "gate": false,
+    "pl1_exec_examples": [],
+    "pl1_200": []
+  },
+  "rows": [
+    {
+      "family": "tap_b",
+      "name": "b0",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>alert(1)</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b0",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>alert(1)</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b1",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b1",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b2",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b2",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b3",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg onload=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b3",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg onload=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b4",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<details open ontoggle=alert(1)>x</details>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b4",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<details open ontoggle=alert(1)>x</details>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b5",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<video><source onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b5",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<video><source onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b6",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<audio src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b6",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<audio src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b7",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<input autofocus onfocus=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b7",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<input autofocus onfocus=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b8",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<marquee onstart=alert(1)>x</marquee>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b8",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<marquee onstart=alert(1)>x</marquee>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b9",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<iframe srcdoc='<script>alert(1)</script>'></iframe>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b9",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<iframe srcdoc='<script>alert(1)</script>'></iframe>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b10",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<object data=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b10",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<object data=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b11",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<embed src=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b11",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<embed src=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b12",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img/src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b12",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img/src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b13",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=alert`1`>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b13",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=alert`1`>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b14",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=top['al'+'ert'](1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b14",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=top['al'+'ert'](1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b15",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>top[8680439..toString(30)](1)</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b15",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>top[8680439..toString(30)](1)</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b16",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script src=data:,alert(1)></script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b16",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<script src=data:,alert(1)></script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b17",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg><script>alert(1)</script></svg>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b17",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg><script>alert(1)</script></svg>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b18",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg><animate onbegin=alert(1) attributeName=x dur=1s />"
+    },
+    {
+      "family": "tap_b",
+      "name": "b18",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg><animate onbegin=alert(1) attributeName=x dur=1s />"
+    },
+    {
+      "family": "tap_b",
+      "name": "b19",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<math><mtext></mtext></math><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b19",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<math><mtext></mtext></math><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b20",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<body onpageshow=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b20",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<body onpageshow=alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b21",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<form><button formaction=javascript:alert(1)>x</button></form>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b21",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<form><button formaction=javascript:alert(1)>x</button></form>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b22",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=eval('alert(1)')>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b22",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=eval('alert(1)')>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b23",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=alert(document.domain)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b23",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=alert(document.domain)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b24",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a href=javascript:alert(1)>x</a>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b24",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a href=javascript:alert(1)>x</a>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b25",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x:alert(1) onerror=eval(src)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b25",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x:alert(1) onerror=eval(src)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b26",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>Function('alert(1)')()</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b26",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>Function('alert(1)')()</script>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b27",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<iframe src=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b27",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<iframe src=javascript:alert(1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b28",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<object data='data:text/html,<script>alert(1)</script>'>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b28",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<object data='data:text/html,<script>alert(1)</script>'>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b29",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=window['alert'](1)>"
+    },
+    {
+      "family": "tap_b",
+      "name": "b29",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=window['alert'](1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<scr\nipt>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<scr\nipt>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script type=\"text/javascript\">alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script type=\"text/javascript\">alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg><script>alert(1)</script></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg><script>alert(1)</script></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<script>alert(1)</script>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<script>alert(1)</script>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>alert?.(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>alert?.(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<script>(alert)(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<script>(alert)(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<input autofocus onfocus=alert(1)><script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<input autofocus onfocus=alert(1)><script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<details open ontoggle=alert(1)><script>alert(1)</script></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<details open ontoggle=alert(1)><script>alert(1)</script></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<script>alert(1)</sc",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)><script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<script>alert(1)</sc",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)><script>alert(1)</script>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img/src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img/src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img\n src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img\n src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg><img src=x onerror=alert(1)></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<svg><img src=x onerror=alert(1)></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<img src=x onerror=alert(1)>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<img src=x onerror=alert(1)>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=alert?.(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=alert?.(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<img src=x onerror=(alert)(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<img src=x onerror=(alert)(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<input autofocus onfocus=alert(1)><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<input autofocus onfocus=alert(1)><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<details open ontoggle=alert(1)><img src=x onerror=alert(1)></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<details open ontoggle=alert(1)><img src=x onerror=alert(1)></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<img src=x onerror=a",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<img src=x onerror=a",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<svg/onload=alert(1)><img src=x onerror=alert(1)>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a/href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E1_slash_tag|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a/href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E2_newline_tag|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E3_script_type|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg><a href=\"javascript:alert(1)\">x</a></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E4_svg_wrap|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<svg><a href=\"javascript:alert(1)\">x</a></svg>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<a href=&quot;javascript:alert(1)&quot;>x</a>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E5_srcdoc|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_NOEXEC",
+      "executed": false,
+      "payload": "<iframe srcdoc=\"<a href=&quot;javascript:alert(1)&quot;>x</a>\"></iframe>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a href=\"javascript:alert?.(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E6_optional_alert|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a href=\"javascript:alert?.(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<a href=\"javascript:(alert)(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E7_paren_alert|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<a href=\"javascript:(alert)(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<input autofocus onfocus=alert(1)><a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E8_autofocus|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<input autofocus onfocus=alert(1)><a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<details open ontoggle=alert(1)><a href=\"javascript:alert(1)\">x</a></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E9_details|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<details open ontoggle=alert(1)><a href=\"javascript:alert(1)\">x</a></details>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<a href=\"javascript:",
+      "target": "pl1",
+      "status": 403,
+      "label": "BLOCK",
+      "executed": false,
+      "payload": "<svg/onload=alert(1)><a href=\"javascript:alert(1)\">x</a>"
+    },
+    {
+      "family": "ext",
+      "name": "E10_svg_onload|<a href=\"javascript:",
+      "target": "app",
+      "status": 200,
+      "label": "BYPASS_EXEC",
+      "executed": true,
+      "payload": "<svg/onload=alert(1)><a href=\"javascript:alert(1)\">x</a>"
+    }
+  ]
+}

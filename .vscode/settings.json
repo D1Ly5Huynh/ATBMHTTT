@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "terminal.integrated.cwd": "${workspaceFolder}/lab",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "lab/node_modules": true
+  }
+}

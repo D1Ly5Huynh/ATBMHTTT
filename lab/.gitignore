@@ -1,0 +1,6 @@
+node_modules/
+data/mereani_exec_oracle.csv
+data/action_alive.csv
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "0. Bật stack CRS (Docker)",
+      "type": "shell",
+      "command": "docker compose up -d && docker compose ps && curl -sS http://127.0.0.1:13000/health; echo",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+    },
+    {
+      "label": "1. Demo đầy đủ (tự chạy, không train)",
+      "type": "shell",
+      "command": "bash src/demo_record.sh --auto",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true },
+      "dependsOn": ["0. Bật stack CRS (Docker)"]
+    },
+    {
+      "label": "1b. Demo từng shot (Enter để tiếp)",
+      "type": "shell",
+      "command": "bash src/demo_record.sh",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+    },
+    {
+      "label": "2. Oracle JSDOM (script vs div)",
+      "type": "shell",
+      "command": "echo '--- script ---'; node oracle/jsdom_oracle.mjs --payload '<script>alert(1)</script>'; echo; echo '--- div ---'; node oracle/jsdom_oracle.mjs --payload '<div>hello</div>'",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+    },
+    {
+      "label": "3. Unit test oracle + 27 action",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/python -m unittest tests.test_oracle tests.test_actions -v",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+    },
+    {
+      "label": "4. CRS curl (app 200 / PL1 403 / hello 200)",
+      "type": "shell",
+      "command": "curl -sS -o /dev/null -w 'app  %{http_code}\\n' 'http://127.0.0.1:13000/html?q=%3Cscript%3Ealert(1)%3C/script%3E'; curl -sS -o /dev/null -w 'pl1 %{http_code}\\n' 'http://127.0.0.1:18080/html?q=%3Cscript%3Ealert(1)%3C/script%3E'; curl -sS -o /dev/null -w 'hello %{http_code}\\n' 'http://127.0.0.1:18080/html?q=hello'",
+      "options": { "cwd": "${workspaceFolder}/lab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "malicious_filtered": 10824,
+  "benign_undersampled_to": 5412,
+  "rr_malicious": 0.0,
+  "splits": {
+    "detectors/train.csv": {
+      "Benign": 3463,
+      "Malicious": 3463,
+      "n": 6926
+    },
+    "detectors/val.csv": {
+      "Malicious": 865,
+      "Benign": 865,
+      "n": 1730
+    },
+    "detectors/test.csv": {
+      "Benign": 1084,
+      "Malicious": 1084,
+      "n": 2168
+    },
+    "adversarial_agents/train.csv": {
+      "Malicious": 3463,
+      "n": 3463
+    },
+    "adversarial_agents/val.csv": {
+      "Malicious": 865,
+      "n": 865
+    },
+    "adversarial_agents/test.csv": {
+      "Malicious": 1084,
+      "n": 1084
+    }
+  }
+}

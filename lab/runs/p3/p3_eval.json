@@ -1,0 +1,23 @@
+{
+  "baseline_fn_unmutated": {
+    "n": 400,
+    "fn": 1,
+    "er": 0.0025
+  },
+  "lstm_test": {
+    "n": 2168,
+    "acc": 0.9908,
+    "precision": 0.9899,
+    "recall": 0.9917,
+    "f1": 0.9908
+  },
+  "ppo": [
+    {"seed": 42, "timesteps": 20000, "n": 400, "n_escape": 1, "er": 0.0025, "rr_e": 0.0, "or_v": 0.75, "exec_alive": 1},
+    {"seed": 43, "timesteps": 20000, "n": 400, "n_escape": 2, "er": 0.005, "rr_e": 0.0, "or_v": 0.278, "exec_alive": 2},
+    {"seed": 44, "timesteps": 20000, "n": 400, "n_escape": 6, "er": 0.015, "rr_e": 0.333, "or_v": 0.4, "exec_alive": 4},
+    {"seed": 45, "timesteps": 80000, "n": 400, "n_escape": 8, "er": 0.02, "rr_e": 0.125, "or_v": 0.433, "exec_alive": 7}
+  ],
+  "er_mean_20k_three_seeds": 0.0075,
+  "er_80k_one_seed": 0.02,
+  "note": "Did not reproduce Pasini ER>96%. With consistent token ids, execution-preserving Table 2 actions, and preprocess that undoes case/entity, PPO barely beats detector FN. Escaped payloads that do exist show elevated OR(V) (~0.28-0.75), so the TH2 shortcut exists but is rare once the Chen/Pasini implementation bugs are closed."
+}

@@ -1,0 +1,65 @@
+{
+  "health": {
+    "app": true,
+    "pl1": true,
+    "pl2": true
+  },
+  "sink": "/html",
+  "jobs": 84,
+  "summary": {
+    "pl1": {
+      "n": 84,
+      "counts": {
+        "BLOCK": 84,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false
+    },
+    "pl2": {
+      "n": 84,
+      "counts": {
+        "BLOCK": 84,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false
+    },
+    "app": {
+      "n": 84,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 13,
+        "BYPASS_EXEC": 71,
+        "ERROR": 0
+      },
+      "escape": 1.0,
+      "tasr": 0.8452380952380952,
+      "delta": 0.15476190476190477,
+      "gate_pl1_exec": true
+    },
+    "purify": {
+      "n": 84,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 84,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 1.0,
+      "tasr": 0.0,
+      "delta": 1.0,
+      "gate_pl1_exec": false
+    }
+  },
+  "gate_pl1_bypass_exec_n": 0,
+  "gate_pl1_examples": []
+}

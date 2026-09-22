@@ -1,0 +1,245 @@
+[
+  {
+    "action": "A1",
+    "group": "javascript-entity",
+    "paper": "Add \"&#14\" before \"javascript\"",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A2",
+    "group": "html-case",
+    "paper": "Mixed case HTML attributes",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A3",
+    "group": "whitespace",
+    "paper": "Replace spaces with \"/\", \"%0A\" or \"%0D\"",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A4",
+    "group": "html-case",
+    "paper": "Mixed case HTML tags",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A5",
+    "group": "html-tag",
+    "paper": "Remove closing symbol of single tags",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A6",
+    "group": "javascript-entity",
+    "paper": "Add \"&NewLine;\" to javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A7",
+    "group": "javascript-entity",
+    "paper": "Add \"&#x09\" to javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A8",
+    "group": "js-encode",
+    "paper": "HTML entity encoding for JS (hex)",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A9",
+    "group": "html-tag",
+    "paper": "Double write HTML tags",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A10",
+    "group": "url",
+    "paper": "Replace \"http://\" with \"//\"",
+    "changed_any": false,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A11",
+    "group": "js-encode",
+    "paper": "HTML entity encoding for JS (decimal)",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A12",
+    "group": "javascript-entity",
+    "paper": "Add \"&colon;\" to javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A13",
+    "group": "javascript-entity",
+    "paper": "Add \"&Tab;\" to javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A14",
+    "group": "html-tag",
+    "paper": "Add \"/drfv/\" after script tag",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A15",
+    "group": "js-syntax",
+    "paper": "Replace () with backticks",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A16",
+    "group": "url",
+    "paper": "Base64-encode data: protocol",
+    "changed_any": false,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A17",
+    "group": "html-tag",
+    "paper": "Remove quotation marks",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A18",
+    "group": "js-encode",
+    "paper": "Unicode encoding for JS code",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A19",
+    "group": "javascript-entity",
+    "paper": "HTML entity encoding for javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A20",
+    "group": "html-tag",
+    "paper": "Replace \">\" of single label with \"<\"",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A21",
+    "group": "alert",
+    "paper": "alert via string concat",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A22",
+    "group": "alert",
+    "paper": "alert via toString(30)",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A23",
+    "group": "noise",
+    "paper": "Interference string before payload",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  },
+  {
+    "action": "A24",
+    "group": "html-tag",
+    "paper": "Comment inside tags",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A25",
+    "group": "legacy",
+    "paper": "vbscript replaces javascript",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A26",
+    "group": "legacy",
+    "paper": "Inject %00 into tags",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 0.6666666666666666
+  },
+  {
+    "action": "A27",
+    "group": "alert",
+    "paper": "alert via regex .source",
+    "changed_any": true,
+    "browser_alive_any": true,
+    "parser_alive_any": true,
+    "browser_alive_rate": 1.0
+  }
+]

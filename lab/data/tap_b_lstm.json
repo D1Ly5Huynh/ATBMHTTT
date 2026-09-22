@@ -1,0 +1,189 @@
+{
+  "summary": {
+    "n": 30,
+    "fn_on_exec": 0,
+    "tp_on_exec": 17
+  },
+  "rows": [
+    {
+      "payload": "<script>alert(1)</script>",
+      "lstm_malicious": true,
+      "score": 0.9973,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x onerror=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9833,
+      "executed": true
+    },
+    {
+      "payload": "<svg/onload=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9907,
+      "executed": false
+    },
+    {
+      "payload": "<svg onload=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9907,
+      "executed": false
+    },
+    {
+      "payload": "<details open ontoggle=alert(1)>x</details>",
+      "lstm_malicious": true,
+      "score": 0.9954,
+      "executed": false
+    },
+    {
+      "payload": "<video><source onerror=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9907,
+      "executed": false
+    },
+    {
+      "payload": "<audio src=x onerror=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9833,
+      "executed": false
+    },
+    {
+      "payload": "<input autofocus onfocus=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9907,
+      "executed": false
+    },
+    {
+      "payload": "<marquee onstart=alert(1)>x</marquee>",
+      "lstm_malicious": true,
+      "score": 0.9962,
+      "executed": false
+    },
+    {
+      "payload": "<iframe srcdoc='<script>alert(1)</script>'></iframe>",
+      "lstm_malicious": true,
+      "score": 0.6447,
+      "executed": true
+    },
+    {
+      "payload": "<object data=javascript:alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9861,
+      "executed": false
+    },
+    {
+      "payload": "<embed src=javascript:alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9861,
+      "executed": true
+    },
+    {
+      "payload": "<img/src=x onerror=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9833,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x onerror=alert`1`>",
+      "lstm_malicious": true,
+      "score": 0.5926,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x onerror=top['al'+'ert'](1)>",
+      "lstm_malicious": true,
+      "score": 0.6295,
+      "executed": true
+    },
+    {
+      "payload": "<script>top[8680439..toString(30)](1)</script>",
+      "lstm_malicious": true,
+      "score": 0.6023,
+      "executed": true
+    },
+    {
+      "payload": "<script src=data:,alert(1)></script>",
+      "lstm_malicious": true,
+      "score": 0.9913,
+      "executed": false
+    },
+    {
+      "payload": "<svg><script>alert(1)</script></svg>",
+      "lstm_malicious": true,
+      "score": 0.9939,
+      "executed": false
+    },
+    {
+      "payload": "<svg><animate onbegin=alert(1) attributeName=x dur=1s />",
+      "lstm_malicious": true,
+      "score": 0.9967,
+      "executed": false
+    },
+    {
+      "payload": "<math><mtext></mtext></math><img src=x onerror=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9833,
+      "executed": true
+    },
+    {
+      "payload": "<body onpageshow=alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9907,
+      "executed": false
+    },
+    {
+      "payload": "<form><button formaction=javascript:alert(1)>x</button></form>",
+      "lstm_malicious": true,
+      "score": 0.9957,
+      "executed": false
+    },
+    {
+      "payload": "<img src=x onerror=eval('alert(1)')>",
+      "lstm_malicious": true,
+      "score": 0.6555,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x onerror=alert(document.domain)>",
+      "lstm_malicious": true,
+      "score": 0.9723,
+      "executed": true
+    },
+    {
+      "payload": "<a href=javascript:alert(1)>x</a>",
+      "lstm_malicious": true,
+      "score": 0.9937,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x:alert(1) onerror=eval(src)>",
+      "lstm_malicious": true,
+      "score": 0.9988,
+      "executed": true
+    },
+    {
+      "payload": "<script>Function('alert(1)')()</script>",
+      "lstm_malicious": true,
+      "score": 0.5889,
+      "executed": true
+    },
+    {
+      "payload": "<iframe src=javascript:alert(1)>",
+      "lstm_malicious": true,
+      "score": 0.9861,
+      "executed": true
+    },
+    {
+      "payload": "<object data='data:text/html,<script>alert(1)</script>'>",
+      "lstm_malicious": true,
+      "score": 0.5534,
+      "executed": true
+    },
+    {
+      "payload": "<img src=x onerror=window['alert'](1)>",
+      "lstm_malicious": true,
+      "score": 0.6438,
+      "executed": true
+    }
+  ]
+}

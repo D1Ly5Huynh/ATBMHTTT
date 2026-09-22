@@ -1,0 +1,341 @@
+family,name,target,path,status,label,executed,hooks,payload
+seed,script,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A1,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A2,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A3,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A4,pl1,/html,403,BLOCK,False,[],<ScRIPT>alert(1)</SCriPt>
+A,script+A5,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A6,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A7,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A8,pl1,/html,403,BLOCK,False,[],<script>&#x61;&#x6c;&#x65;&#x72;&#x74;(1)</script>
+A,script+A9,pl1,/html,403,BLOCK,False,[],<script><script>alert(1)</script>
+A,script+A10,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A11,pl1,/html,403,BLOCK,False,[],<script>&#97;&#108;&#101;&#114;&#116;(1)</script>
+A,script+A12,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A13,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A14,pl1,/html,403,BLOCK,False,[],"<script>/drfv/
+alert(1)</script>"
+A,script+A15,pl1,/html,403,BLOCK,False,[],<script>alert`1`</script>
+A,script+A16,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A17,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A18,pl1,/html,403,BLOCK,False,[],<script>\u0061\u006c\u0065\u0072\u0074(1)</script>
+A,script+A19,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A20,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A21,pl1,/html,403,BLOCK,False,[],<script>top['al'+'ert'](1)</script>
+A,script+A22,pl1,/html,403,BLOCK,False,[],<script>top[8680439..toString(30)](1)</script>
+A,script+A23,pl1,/html,403,BLOCK,False,[],search?q=ok <script>alert(1)</script>
+A,script+A24,pl1,/html,403,BLOCK,False,[],<script <!--x-->>alert(1)</script>
+A,script+A25,pl1,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A26,pl1,/html,403,BLOCK,False,[],%00<script>alert(1)</script>
+A,script+A27,pl1,/html,403,BLOCK,False,[],<script>top[/al/.source+/ert/.source](1)</script>
+seed,img,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A1,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A2,pl1,/html,403,BLOCK,False,[],<img SrC=x onERrOR=alert(1)>
+A,img+A3,pl1,/html,403,BLOCK,False,[],<img%0Asrc=x%0Aonerror=alert(1)>
+A,img+A4,pl1,/html,403,BLOCK,False,[],<iMG Src=x OnERrOr=alerT(1)>
+A,img+A5,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1) 
+A,img+A6,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A7,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A8,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A9,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)><img src=x onerror=alert(1)>
+A,img+A10,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A11,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A12,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A13,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A14,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A15,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert`1`>
+A,img+A16,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A17,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A18,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A19,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A20,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)<
+A,img+A21,pl1,/html,403,BLOCK,False,[],<img src=x onerror=top['al'+'ert'](1)>
+A,img+A22,pl1,/html,403,BLOCK,False,[],<img src=x onerror=top[8680439..toString(30)](1)>
+A,img+A23,pl1,/html,403,BLOCK,False,[],search?q=ok <img src=x onerror=alert(1)>
+A,img+A24,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1) <!--x-->>
+A,img+A25,pl1,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A26,pl1,/html,403,BLOCK,False,[],%00<img src=x onerror=alert(1)>
+A,img+A27,pl1,/html,403,BLOCK,False,[],<img src=x onerror=top[/al/.source+/ert/.source](1)>
+seed,jsurl,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A1,pl1,/html,403,BLOCK,False,[],"<a href=""&#14javascript:alert(1)"">x</a>"
+A,jsurl+A2,pl1,/html,403,BLOCK,False,[],"<a hREf=""javascript:alert(1)"">x</a>"
+A,jsurl+A3,pl1,/html,403,BLOCK,False,[],"<a%0Ahref=""javascript:alert(1)"">x</a>"
+A,jsurl+A4,pl1,/html,403,BLOCK,False,[],"<A hReF=""JaVAsCript:ALert(1)"">x</a>"
+A,jsurl+A5,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A6,pl1,/html,403,BLOCK,False,[],"<a href=""javas&NewLine;cript:alert(1)"">x</a>"
+A,jsurl+A7,pl1,/html,403,BLOCK,False,[],"<a href=""javas&#x09;cript:alert(1)"">x</a>"
+A,jsurl+A8,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:&#x61;&#x6c;&#x65;&#x72;&#x74;(1)"">x</a>"
+A,jsurl+A9,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)""><a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A10,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A11,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:&#97;&#108;&#101;&#114;&#116;(1)"">x</a>"
+A,jsurl+A12,pl1,/html,403,BLOCK,False,[],"<a href=""javas&colon;cript:alert(1)"">x</a>"
+A,jsurl+A13,pl1,/html,403,BLOCK,False,[],"<a href=""javas&Tab;cript:alert(1)"">x</a>"
+A,jsurl+A14,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A15,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert`1`"">x</a>"
+A,jsurl+A16,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A17,pl1,/html,403,BLOCK,False,[],<a href=javascript:alert(1)>x</a>
+A,jsurl+A18,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:\u0061\u006c\u0065\u0072\u0074(1)"">x</a>"
+A,jsurl+A19,pl1,/html,403,BLOCK,False,[],"<a href=""&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;:alert(1)"">x</a>"
+A,jsurl+A20,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A21,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:top['al'+'ert'](1)"">x</a>"
+A,jsurl+A22,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:top[8680439..toString(30)](1)"">x</a>"
+A,jsurl+A23,pl1,/html,403,BLOCK,False,[],"search?q=ok <a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A24,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"" <!--x-->>x</a>"
+A,jsurl+A25,pl1,/html,403,BLOCK,False,[],"<a href=""vbscript:alert(1)"">x</a>"
+A,jsurl+A26,pl1,/html,403,BLOCK,False,[],"%00<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A27,pl1,/html,403,BLOCK,False,[],"<a href=""javascript:top[/al/.source+/ert/.source](1)"">x</a>"
+seed,script,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A1,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A2,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A3,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A4,pl2,/html,403,BLOCK,False,[],<ScRIPT>alert(1)</SCriPt>
+A,script+A5,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A6,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A7,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A8,pl2,/html,403,BLOCK,False,[],<script>&#x61;&#x6c;&#x65;&#x72;&#x74;(1)</script>
+A,script+A9,pl2,/html,403,BLOCK,False,[],<script><script>alert(1)</script>
+A,script+A10,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A11,pl2,/html,403,BLOCK,False,[],<script>&#97;&#108;&#101;&#114;&#116;(1)</script>
+A,script+A12,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A13,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A14,pl2,/html,403,BLOCK,False,[],"<script>/drfv/
+alert(1)</script>"
+A,script+A15,pl2,/html,403,BLOCK,False,[],<script>alert`1`</script>
+A,script+A16,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A17,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A18,pl2,/html,403,BLOCK,False,[],<script>\u0061\u006c\u0065\u0072\u0074(1)</script>
+A,script+A19,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A20,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A21,pl2,/html,403,BLOCK,False,[],<script>top['al'+'ert'](1)</script>
+A,script+A22,pl2,/html,403,BLOCK,False,[],<script>top[8680439..toString(30)](1)</script>
+A,script+A23,pl2,/html,403,BLOCK,False,[],search?q=ok <script>alert(1)</script>
+A,script+A24,pl2,/html,403,BLOCK,False,[],<script <!--x-->>alert(1)</script>
+A,script+A25,pl2,/html,403,BLOCK,False,[],<script>alert(1)</script>
+A,script+A26,pl2,/html,403,BLOCK,False,[],%00<script>alert(1)</script>
+A,script+A27,pl2,/html,403,BLOCK,False,[],<script>top[/al/.source+/ert/.source](1)</script>
+seed,img,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A1,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A2,pl2,/html,403,BLOCK,False,[],<img SrC=x onERrOR=alert(1)>
+A,img+A3,pl2,/html,403,BLOCK,False,[],<img%0Asrc=x%0Aonerror=alert(1)>
+A,img+A4,pl2,/html,403,BLOCK,False,[],<iMG Src=x OnERrOr=alerT(1)>
+A,img+A5,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1) 
+A,img+A6,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A7,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A8,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A9,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)><img src=x onerror=alert(1)>
+A,img+A10,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A11,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A12,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A13,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A14,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A15,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert`1`>
+A,img+A16,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A17,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A18,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A19,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A20,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)<
+A,img+A21,pl2,/html,403,BLOCK,False,[],<img src=x onerror=top['al'+'ert'](1)>
+A,img+A22,pl2,/html,403,BLOCK,False,[],<img src=x onerror=top[8680439..toString(30)](1)>
+A,img+A23,pl2,/html,403,BLOCK,False,[],search?q=ok <img src=x onerror=alert(1)>
+A,img+A24,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1) <!--x-->>
+A,img+A25,pl2,/html,403,BLOCK,False,[],<img src=x onerror=alert(1)>
+A,img+A26,pl2,/html,403,BLOCK,False,[],%00<img src=x onerror=alert(1)>
+A,img+A27,pl2,/html,403,BLOCK,False,[],<img src=x onerror=top[/al/.source+/ert/.source](1)>
+seed,jsurl,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A1,pl2,/html,403,BLOCK,False,[],"<a href=""&#14javascript:alert(1)"">x</a>"
+A,jsurl+A2,pl2,/html,403,BLOCK,False,[],"<a hREf=""javascript:alert(1)"">x</a>"
+A,jsurl+A3,pl2,/html,403,BLOCK,False,[],"<a%0Ahref=""javascript:alert(1)"">x</a>"
+A,jsurl+A4,pl2,/html,403,BLOCK,False,[],"<A hReF=""JaVAsCript:ALert(1)"">x</a>"
+A,jsurl+A5,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A6,pl2,/html,403,BLOCK,False,[],"<a href=""javas&NewLine;cript:alert(1)"">x</a>"
+A,jsurl+A7,pl2,/html,403,BLOCK,False,[],"<a href=""javas&#x09;cript:alert(1)"">x</a>"
+A,jsurl+A8,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:&#x61;&#x6c;&#x65;&#x72;&#x74;(1)"">x</a>"
+A,jsurl+A9,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)""><a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A10,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A11,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:&#97;&#108;&#101;&#114;&#116;(1)"">x</a>"
+A,jsurl+A12,pl2,/html,403,BLOCK,False,[],"<a href=""javas&colon;cript:alert(1)"">x</a>"
+A,jsurl+A13,pl2,/html,403,BLOCK,False,[],"<a href=""javas&Tab;cript:alert(1)"">x</a>"
+A,jsurl+A14,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A15,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert`1`"">x</a>"
+A,jsurl+A16,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A17,pl2,/html,403,BLOCK,False,[],<a href=javascript:alert(1)>x</a>
+A,jsurl+A18,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:\u0061\u006c\u0065\u0072\u0074(1)"">x</a>"
+A,jsurl+A19,pl2,/html,403,BLOCK,False,[],"<a href=""&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;:alert(1)"">x</a>"
+A,jsurl+A20,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A21,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:top['al'+'ert'](1)"">x</a>"
+A,jsurl+A22,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:top[8680439..toString(30)](1)"">x</a>"
+A,jsurl+A23,pl2,/html,403,BLOCK,False,[],"search?q=ok <a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A24,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:alert(1)"" <!--x-->>x</a>"
+A,jsurl+A25,pl2,/html,403,BLOCK,False,[],"<a href=""vbscript:alert(1)"">x</a>"
+A,jsurl+A26,pl2,/html,403,BLOCK,False,[],"%00<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A27,pl2,/html,403,BLOCK,False,[],"<a href=""javascript:top[/al/.source+/ert/.source](1)"">x</a>"
+seed,script,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A1,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A2,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A3,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A4,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<ScRIPT>alert(1)</SCriPt>
+A,script+A5,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A6,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A7,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A8,app,/html,200,BYPASS_NOEXEC,False,[],<script>&#x61;&#x6c;&#x65;&#x72;&#x74;(1)</script>
+A,script+A9,app,/html,200,BYPASS_NOEXEC,False,[],<script><script>alert(1)</script>
+A,script+A10,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A11,app,/html,200,BYPASS_NOEXEC,False,[],<script>&#97;&#108;&#101;&#114;&#116;(1)</script>
+A,script+A12,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A13,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A14,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']","<script>/drfv/
+alert(1)</script>"
+A,script+A15,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert`1`</script>
+A,script+A16,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A17,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A18,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>\u0061\u006c\u0065\u0072\u0074(1)</script>
+A,script+A19,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A20,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A21,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>top['al'+'ert'](1)</script>
+A,script+A22,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>top[8680439..toString(30)](1)</script>
+A,script+A23,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",search?q=ok <script>alert(1)</script>
+A,script+A24,app,/html,200,BYPASS_NOEXEC,False,[],<script <!--x-->>alert(1)</script>
+A,script+A25,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>alert(1)</script>
+A,script+A26,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",%00<script>alert(1)</script>
+A,script+A27,app,/html,200,BYPASS_EXEC,True,"['title', 'alert']",<script>top[/al/.source+/ert/.source](1)</script>
+seed,img,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A1,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A2,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img SrC=x onERrOR=alert(1)>
+A,img+A3,app,/html,200,BYPASS_NOEXEC,False,[],<img%0Asrc=x%0Aonerror=alert(1)>
+A,img+A4,app,/html,200,BYPASS_EXEC,True,['Function'],<iMG Src=x OnERrOr=alerT(1)>
+A,img+A5,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1) 
+A,img+A6,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A7,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A8,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A9,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert', 'Function']",<img src=x onerror=alert(1)><img src=x onerror=alert(1)>
+A,img+A10,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A11,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A12,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A13,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A14,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A15,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert`1`>
+A,img+A16,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A17,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A18,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A19,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A20,app,/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)<
+A,img+A21,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=top['al'+'ert'](1)>
+A,img+A22,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=top[8680439..toString(30)](1)>
+A,img+A23,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",search?q=ok <img src=x onerror=alert(1)>
+A,img+A24,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1) <!--x-->>
+A,img+A25,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=alert(1)>
+A,img+A26,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",%00<img src=x onerror=alert(1)>
+A,img+A27,app,/html,200,BYPASS_EXEC,True,"['Function', 'title', 'alert']",<img src=x onerror=top[/al/.source+/ert/.source](1)>
+seed,jsurl,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A1,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""&#14javascript:alert(1)"">x</a>"
+A,jsurl+A2,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a hREf=""javascript:alert(1)"">x</a>"
+A,jsurl+A3,app,/html,200,BYPASS_NOEXEC,False,[],"<a%0Ahref=""javascript:alert(1)"">x</a>"
+A,jsurl+A4,app,/html,200,BYPASS_EXEC,True,['eval'],"<A hReF=""JaVAsCript:ALert(1)"">x</a>"
+A,jsurl+A5,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A6,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&NewLine;cript:alert(1)"">x</a>"
+A,jsurl+A7,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&#x09;cript:alert(1)"">x</a>"
+A,jsurl+A8,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:&#x61;&#x6c;&#x65;&#x72;&#x74;(1)"">x</a>"
+A,jsurl+A9,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert', 'eval']","<a href=""javascript:alert(1)""><a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A10,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A11,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:&#97;&#108;&#101;&#114;&#116;(1)"">x</a>"
+A,jsurl+A12,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&colon;cript:alert(1)"">x</a>"
+A,jsurl+A13,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&Tab;cript:alert(1)"">x</a>"
+A,jsurl+A14,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A15,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert`1`"">x</a>"
+A,jsurl+A16,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A17,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']",<a href=javascript:alert(1)>x</a>
+A,jsurl+A18,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:\u0061\u006c\u0065\u0072\u0074(1)"">x</a>"
+A,jsurl+A19,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;:alert(1)"">x</a>"
+A,jsurl+A20,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A21,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:top['al'+'ert'](1)"">x</a>"
+A,jsurl+A22,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:top[8680439..toString(30)](1)"">x</a>"
+A,jsurl+A23,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","search?q=ok <a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A24,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:alert(1)"" <!--x-->>x</a>"
+A,jsurl+A25,app,/html,200,BYPASS_NOEXEC,False,[],"<a href=""vbscript:alert(1)"">x</a>"
+A,jsurl+A26,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","%00<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A27,app,/html,200,BYPASS_EXEC,True,"['eval', 'title', 'alert']","<a href=""javascript:top[/al/.source+/ert/.source](1)"">x</a>"
+seed,script,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A1,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A2,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A3,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A4,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<ScRIPT>alert(1)</SCriPt>
+A,script+A5,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A6,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A7,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A8,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>&#x61;&#x6c;&#x65;&#x72;&#x74;(1)</script>
+A,script+A9,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script><script>alert(1)</script>
+A,script+A10,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A11,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>&#97;&#108;&#101;&#114;&#116;(1)</script>
+A,script+A12,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A13,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A14,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<script>/drfv/
+alert(1)</script>"
+A,script+A15,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert`1`</script>
+A,script+A16,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A17,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A18,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>\u0061\u006c\u0065\u0072\u0074(1)</script>
+A,script+A19,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A20,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A21,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>top['al'+'ert'](1)</script>
+A,script+A22,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>top[8680439..toString(30)](1)</script>
+A,script+A23,purify,/purify/html,200,BYPASS_NOEXEC,False,[],search?q=ok <script>alert(1)</script>
+A,script+A24,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script <!--x-->>alert(1)</script>
+A,script+A25,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>alert(1)</script>
+A,script+A26,purify,/purify/html,200,BYPASS_NOEXEC,False,[],%00<script>alert(1)</script>
+A,script+A27,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<script>top[/al/.source+/ert/.source](1)</script>
+seed,img,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A1,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A2,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img SrC=x onERrOR=alert(1)>
+A,img+A3,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img%0Asrc=x%0Aonerror=alert(1)>
+A,img+A4,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<iMG Src=x OnERrOr=alerT(1)>
+A,img+A5,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1) 
+A,img+A6,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A7,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A8,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A9,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)><img src=x onerror=alert(1)>
+A,img+A10,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A11,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A12,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A13,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A14,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A15,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert`1`>
+A,img+A16,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A17,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A18,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A19,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A20,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)<
+A,img+A21,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=top['al'+'ert'](1)>
+A,img+A22,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=top[8680439..toString(30)](1)>
+A,img+A23,purify,/purify/html,200,BYPASS_NOEXEC,False,[],search?q=ok <img src=x onerror=alert(1)>
+A,img+A24,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1) <!--x-->>
+A,img+A25,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=alert(1)>
+A,img+A26,purify,/purify/html,200,BYPASS_NOEXEC,False,[],%00<img src=x onerror=alert(1)>
+A,img+A27,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<img src=x onerror=top[/al/.source+/ert/.source](1)>
+seed,jsurl,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A1,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""&#14javascript:alert(1)"">x</a>"
+A,jsurl+A2,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a hREf=""javascript:alert(1)"">x</a>"
+A,jsurl+A3,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a%0Ahref=""javascript:alert(1)"">x</a>"
+A,jsurl+A4,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<A hReF=""JaVAsCript:ALert(1)"">x</a>"
+A,jsurl+A5,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A6,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&NewLine;cript:alert(1)"">x</a>"
+A,jsurl+A7,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&#x09;cript:alert(1)"">x</a>"
+A,jsurl+A8,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:&#x61;&#x6c;&#x65;&#x72;&#x74;(1)"">x</a>"
+A,jsurl+A9,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)""><a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A10,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A11,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:&#97;&#108;&#101;&#114;&#116;(1)"">x</a>"
+A,jsurl+A12,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&colon;cript:alert(1)"">x</a>"
+A,jsurl+A13,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javas&Tab;cript:alert(1)"">x</a>"
+A,jsurl+A14,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A15,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert`1`"">x</a>"
+A,jsurl+A16,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A17,purify,/purify/html,200,BYPASS_NOEXEC,False,[],<a href=javascript:alert(1)>x</a>
+A,jsurl+A18,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:\u0061\u006c\u0065\u0072\u0074(1)"">x</a>"
+A,jsurl+A19,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;:alert(1)"">x</a>"
+A,jsurl+A20,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A21,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:top['al'+'ert'](1)"">x</a>"
+A,jsurl+A22,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:top[8680439..toString(30)](1)"">x</a>"
+A,jsurl+A23,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"search?q=ok <a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A24,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:alert(1)"" <!--x-->>x</a>"
+A,jsurl+A25,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""vbscript:alert(1)"">x</a>"
+A,jsurl+A26,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"%00<a href=""javascript:alert(1)"">x</a>"
+A,jsurl+A27,purify,/purify/html,200,BYPASS_NOEXEC,False,[],"<a href=""javascript:top[/al/.source+/ert/.source](1)"">x</a>"

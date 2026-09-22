@@ -1,0 +1,132 @@
+BẢNG KẾT QUẢ THÍ NGHIỆM — dán vào báo cáo đồ án ATBMHTTT
+Sinh từ lab/src/run_offline_bao_cao.py — số đọc từ đĩa, không bịa.
+Thời điểm: 2026-09-21T03:18:25-04:00
+Artifact pin: a299bb6   |   10-seed: 29/60 job (48.3%)
+Không trộn nhánh A (~99%) với nhánh B (~1%).
+
+==============================================================================
+1) NHÁNH A — Table 4 detector (data/10, seed 42, test n=1802)
+==============================================================================
+Mạng          Precision     Recall     Accuracy           F1
+Paper            99,67%       100%       99,83%       99,83%
+lstm             99,67%    100,00%       99,83%       99,83%
+mlp              99,67%    100,00%       99,83%       99,83%
+cnn              99,67%    100,00%       99,83%       99,83%
+Cả ba mạng lab: TP=901 FP=3 TN=898 FN=0 (nếu Table 4 trùng).
+
+==============================================================================
+2) NHÁNH A — PPO không Oracle (replication). Paper = tb 10 seed; lab = seed đã xong
+==============================================================================
+Mạng         ER paper              ER lab tb    RR(V) paper           RR(V) lab tb
+lstm           98,62% 98,48% ± 0,31%  (n=10)         97,31% 85,26% ± 31,87%  (n=8)
+mlp            99,73% 98,80% ± 0,16%  (n=10)         97,84% 98,01% ± 0,33%  (n=10)
+cnn            98,25%  98,50% ± 0,50%  (n=6)         92,57% 50,10% ± 48,24%  (n=6)
+
+Từng seed (ER).  status=done mới có số.
+model   seed  oracle status               ER      RR(E)      RR(V)      OR(V)
+lstm      42      no done             98,78%      8,99%     98,54%     48,54%
+lstm      43      no done             98,56%      0,11%     94,93%     45,33%
+lstm      44      no done             98,78%      0,79%     97,53%     47,36%
+lstm      45      no done             99,00%      0,00%      1,01%      2,16%
+lstm      46      no done             98,34%      0,00%     95,26%     45,40%
+lstm      47      no done             98,00%          —          —          —
+lstm      48      no done             98,00%          —          —          —
+lstm      49      no done             98,56%      9,91%     98,76%     48,73%
+lstm      50      no done             98,34%      4,63%     97,86%     46,88%
+lstm      51      no done             98,45%      9,58%     98,20%     48,67%
+mlp       42      no done             98,67%     10,24%     98,54%     45,01%
+mlp       43      no done             99,00%      8,74%     97,87%     46,03%
+mlp       44      no done             98,78%      4,83%     97,64%     44,51%
+mlp       45      no done             98,67%      8,32%     98,20%     45,08%
+mlp       46      no done             99,11%      9,52%     97,65%     44,80%
+mlp       47      no done             98,67%      4,72%     97,98%     44,69%
+mlp       48      no done             98,67%      8,77%     98,43%     45,03%
+mlp       49      no done             98,89%      8,53%     98,32%     44,90%
+mlp       50      no done             98,89%      8,87%     97,98%     45,09%
+mlp       51      no done             98,67%      4,61%     97,53%     44,54%
+cnn       42      no done             98,89%      0,00%      1,35%      2,42%
+cnn       43      no done             99,11%      0,00%      2,91%      3,23%
+cnn       44      no done             98,00%      9,51%     98,53%     46,41%
+cnn       45      no done             97,78%      4,20%     97,96%     45,61%
+cnn       46      no done             98,89%      0,00%      1,35%      2,41%
+cnn       47      no done             98,34%      8,24%     98,53%     46,43%
+cnn       48      no incomplete            —          —          —          —
+cnn       49      no missing               —          —          —          —
+cnn       50      no missing               —          —          —          —
+cnn       51      no missing               —          —          —          —
+
+==============================================================================
+3) NHÁNH A — RQ3 Oracle-in-loop (code −5)
+==============================================================================
+Mạng         ER paper              ER lab tb    RR(V) paper           RR(V) lab tb
+lstm           98,13%  98,34% ± 0,00%  (n=1)          0,01%   0,00% ± 0,00%  (n=1)
+mlp            97,37%  97,89% ± 0,00%  (n=1)          0,11%   0,00% ± 0,00%  (n=1)
+cnn            96,89%  96,00% ± 0,00%  (n=1)          0,08%   0,12% ± 0,00%  (n=1)
+
+Từng seed RQ3:
+model   seed status               ER      RR(V)      OR(V)
+lstm      42 done             98,34%      0,00%      1,69%
+lstm      43 missing               —          —          —
+lstm      44 missing               —          —          —
+lstm      45 missing               —          —          —
+lstm      46 missing               —          —          —
+lstm      47 missing               —          —          —
+lstm      48 missing               —          —          —
+lstm      49 missing               —          —          —
+lstm      50 missing               —          —          —
+lstm      51 missing               —          —          —
+mlp       42 done             97,89%      0,00%      1,76%
+mlp       43 missing               —          —          —
+mlp       44 missing               —          —          —
+mlp       45 missing               —          —          —
+mlp       46 missing               —          —          —
+mlp       47 missing               —          —          —
+mlp       48 missing               —          —          —
+mlp       49 missing               —          —          —
+mlp       50 missing               —          —          —
+mlp       51 missing               —          —          —
+cnn       42 done             96,00%      0,12%      2,17%
+cnn       43 missing               —          —          —
+cnn       44 missing               —          —          —
+cnn       45 missing               —          —          —
+cnn       46 missing               —          —          —
+cnn       47 missing               —          —          —
+cnn       48 missing               —          —          —
+cnn       49 missing               —          —          —
+cnn       50 missing               —          —          —
+cnn       51 missing               —          —          —
+
+Câu được: Trên đúng artifact data/10, tái lập ER ~99% và RQ3 ER>96% với RR≈0 theo Oracle DOM.
+Câu cấm: coi ER 99% sau Oracle DOM là XSS còn chạy JavaScript.
+
+==============================================================================
+4) NHÁNH B — JSDOM, token-id cố định (không trộn với mục 2–3)
+==============================================================================
+Mereani: gốc 43217 | độc 15149 | giữ execute 10824 | parser-only 3542 (W1=23,38%) | RR gốc=0.0
+LSTM test: acc=99,08% P=98,99% R=99,17% F1=99,08%
+P3 PPO ER tb 3 seed × 20k = 0,75%
+  seed 42  steps=20000  ER=0,25%  RR(E)=0,00%  OR(V)=0.75
+  seed 43  steps=20000  ER=0,50%  RR(E)=0,00%  OR(V)=0.278
+  seed 44  steps=20000  ER=1,50%  RR(E)=33,30%  OR(V)=0.4
+  seed 45  steps=80000  ER=2,00%  RR(E)=12,50%  OR(V)=0.433
+P4 PPO + R_exec ER=TASR tb = 0,25%  RR=0  (n=3)
+  seed 42  ER=TASR=0,25%  RR(E)=0,00%
+  seed 43  ER=TASR=0,25%  RR(E)=0,00%
+  seed 44  ER=TASR=0,25%  RR(E)=0,00%
+P4 Dueling DQN ER/TASR tb = 1,08%  RR=0
+  seed 42  ER=TASR=1,75%  RR(E)=0,00%
+  seed 43  ER=TASR=0,75%  RR(E)=0,00%
+  seed 44  ER=TASR=0,75%  RR(E)=0,00%
+P5 catalog 84 /html: CRS PL1 TASR=0,00%  App TASR=84,52%
+P5 mở rộng: diverse PL1 TASR=0,00%
+
+Câu được: Khi khép token-id, PPO Table 2 không còn ER ~99%. CRS lab TASR=0.
+Câu cấm: replication Chen 99%; SAC; bypass CRS; HTTP 200 = TASR.
+
+==============================================================================
+5) GHI CHÚ 10 SEED
+==============================================================================
+Thiếu job → status missing/incomplete. RR trống = RecursionError DOM (giữ ER, không bịa RR).
+Khi n_done=60, thay bảng 4.3–4.4 trong báo cáo bằng dòng 'ER lab tb' ở mục 2–3.
+File máy: lab/runs/pasini_faithful/bao_cao/
+

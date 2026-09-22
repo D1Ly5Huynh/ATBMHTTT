@@ -1,0 +1,39 @@
+{
+  "health": {
+    "app": true,
+    "pl1": true,
+    "pl2": true
+  },
+  "sink": "/html",
+  "jobs": 284,
+  "summary": {
+    "app": {
+      "n": 284,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 211,
+        "BYPASS_EXEC": 73,
+        "ERROR": 0
+      },
+      "escape": 1.0,
+      "tasr": 0.25704225352112675,
+      "delta": 0.7429577464788732,
+      "gate_pl1_exec": true
+    },
+    "purify": {
+      "n": 284,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 284,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 1.0,
+      "tasr": 0.0,
+      "delta": 1.0,
+      "gate_pl1_exec": false
+    }
+  },
+  "gate_pl1_bypass_exec_n": 0,
+  "gate_pl1_examples": []
+}

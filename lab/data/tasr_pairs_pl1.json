@@ -1,0 +1,26 @@
+{
+  "health": {
+    "app": true,
+    "pl1": true,
+    "pl2": true
+  },
+  "sink": "/html",
+  "jobs": 672,
+  "summary": {
+    "pl1": {
+      "n": 672,
+      "counts": {
+        "BLOCK": 672,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false
+    }
+  },
+  "gate_pl1_bypass_exec_n": 0,
+  "gate_pl1_examples": []
+}

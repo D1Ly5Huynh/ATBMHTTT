@@ -1,0 +1,39 @@
+{
+  "ddqn": [
+    {
+      "algo": "ddqn",
+      "seed": 42,
+      "n": 400,
+      "n_escape": 7,
+      "er": 0.0175,
+      "tasr": 0.0175,
+      "rr_e": 0.0,
+      "or_v": 0.3793103448275862,
+      "exec_alive_among_escape": 7
+    },
+    {
+      "algo": "ddqn",
+      "seed": 43,
+      "n": 400,
+      "n_escape": 3,
+      "er": 0.0075,
+      "tasr": 0.0075,
+      "rr_e": 0.0,
+      "or_v": 0.34782608695652173,
+      "exec_alive_among_escape": 3
+    },
+    {
+      "algo": "ddqn",
+      "seed": 44,
+      "n": 400,
+      "n_escape": 3,
+      "er": 0.0075,
+      "tasr": 0.0075,
+      "rr_e": 0.0,
+      "or_v": 0.5,
+      "exec_alive_among_escape": 3
+    }
+  ],
+  "er_mean": 0.010833333333333334,
+  "tasr_mean": 0.010833333333333334
+}

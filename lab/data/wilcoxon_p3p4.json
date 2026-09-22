@@ -1,0 +1,26 @@
+{
+  "metric": "ER on 400 agent-test payloads",
+  "p3_er": [
+    0.0025,
+    0.005,
+    0.015
+  ],
+  "p4_er": [
+    0.0025,
+    0.0025,
+    0.0025
+  ],
+  "diffs_p3_minus_p4": [
+    0.0,
+    0.0025,
+    0.012499999999999999
+  ],
+  "wilcoxon": {
+    "n_nonzero": 2,
+    "w_plus": 3.0,
+    "w_minus": 0,
+    "p_two_sided_exact": 0.5,
+    "note": "n=3 (1 zero dropped \u2192 n=2). Power is negligible; report as descriptive."
+  },
+  "reading": "P4 ER is <= P3 on every seed. Test cannot reject at 0.05 with n=2."
+}

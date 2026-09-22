@@ -1,0 +1,5 @@
+{
+  "source": "Pasini 2026 Table 2 / Chen 2022 List of Actions",
+  "count": 27,
+  "notes": "Lab implementations prefer execution-preserving variants (A21/A22/A27 do not append extra (1)). A18 and A20 are implemented; Pasini artifact left them empty."
+}

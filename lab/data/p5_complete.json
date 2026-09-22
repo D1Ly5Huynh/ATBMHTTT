@@ -1,0 +1,161 @@
+{
+  "health": {
+    "app": true,
+    "pl1": true,
+    "pl2": true
+  },
+  "diverse_pl1": {
+    "n": 1120,
+    "counts": {
+      "BLOCK": 1120,
+      "BYPASS_NOEXEC": 0,
+      "BYPASS_EXEC": 0,
+      "ERROR": 0
+    },
+    "escape": 0.0,
+    "tasr": 0.0,
+    "delta": 0.0,
+    "gate_pl1_exec": false,
+    "examples": []
+  },
+  "triples_pl1": {
+    "n": 686,
+    "counts": {
+      "BLOCK": 686,
+      "BYPASS_NOEXEC": 0,
+      "BYPASS_EXEC": 0,
+      "ERROR": 0
+    },
+    "escape": 0.0,
+    "tasr": 0.0,
+    "delta": 0.0,
+    "gate_pl1_exec": false,
+    "examples": []
+  },
+  "transfer_p3": {
+    "pl1": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 79,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 1
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false,
+      "examples": []
+    },
+    "pl2": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 79,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 1
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false,
+      "examples": []
+    },
+    "app": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 79,
+        "BYPASS_EXEC": 0,
+        "ERROR": 1
+      },
+      "escape": 0.9875,
+      "tasr": 0.0,
+      "delta": 0.9875,
+      "gate_pl1_exec": false,
+      "examples": []
+    }
+  },
+  "transfer_p4": {
+    "pl1": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 80,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false,
+      "examples": []
+    },
+    "pl2": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 80,
+        "BYPASS_NOEXEC": 0,
+        "BYPASS_EXEC": 0,
+        "ERROR": 0
+      },
+      "escape": 0.0,
+      "tasr": 0.0,
+      "delta": 0.0,
+      "gate_pl1_exec": false,
+      "examples": []
+    },
+    "app": {
+      "n": 80,
+      "counts": {
+        "BLOCK": 0,
+        "BYPASS_NOEXEC": 79,
+        "BYPASS_EXEC": 1,
+        "ERROR": 0
+      },
+      "escape": 1.0,
+      "tasr": 0.0125,
+      "delta": 0.9875,
+      "gate_pl1_exec": true,
+      "examples": [
+        {
+          "status": 200,
+          "label": "BYPASS_EXEC",
+          "executed": true,
+          "payload": "ttp://www.europcarug.com/cgi-bin/feedback.cgi?lang=\"><script>/drfv/\nalert(document.cookie)</script>",
+          "family": "transfer",
+          "algo": "ppo",
+          "zip": "ppo_oracle_seed42.zip",
+          "target": "app",
+          "lstm_success": false
+        }
+      ]
+    }
+  },
+  "gate_pl1_bypass_exec": false,
+  "playwright": {
+    "ok": true,
+    "n": 4,
+    "executed": 3,
+    "rate": 0.75,
+    "rows": [
+      {
+        "payload": "<script>alert(1)</script>",
+        "executed": true
+      },
+      {
+        "payload": "<img src=x onerror=alert(1)>",
+        "executed": true
+      },
+      {
+        "payload": "<a href=\"javascript:alert(1)\">x</a>",
+        "executed": true
+      },
+      {
+        "payload": "<div>hello</div>",
+        "executed": false
+      }
+    ],
+    "note": "Chromium hold-out agrees with JSDOM on seeds; <div> not XSS."
+  }
+}
